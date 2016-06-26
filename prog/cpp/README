@@ -1,0 +1,19 @@
+
+
+Programms in CPP:
+
+1. hello world class ==> create a class with few varaibles & delete them
+2. base + derived class
+   a. Function overloading
+   b. operator overloading
+   c. constructor seq
+   d. destructor seq
+   e. copy construtor
+   f. virtual functions example
+   g. static funcs + static vraibales class
+
+3. abstract class-comunication class
+    a. IPC example client server TCP/UDP derived class from communication class
+
+
+

@@ -1,0 +1,18 @@
+
+@ use system logging (rsyslog) on all of these examples
+1. kernal object
+   a. legacy way -- ping(application) -- pong (kernal objects)
+   b. net link sockets -- 
+       ping clinet -- pong kernal obj
+       king kernal -- kong client
+
+
+2. pthreads examples
+3. IPC
+   a. semaphore/mutex
+   b. pipes/msgQ/Shared memory
+
+
+4. 
+
+
