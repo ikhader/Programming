@@ -6,17 +6,17 @@
 all: client server
 
 client: Client.o StreamSock.o
-	g++ Client.o StreamSock.o -o client
+	g++ -g Client.o StreamSock.o -o client
 
 server: Server.o StreamSock.o
-	g++ Server.o StreamSock.o -o server
+	g++ -g Server.o StreamSock.o -o server
 Server.o: Server.cpp
-	g++ -c Server.cpp
+	g++ -c -g Server.cpp
  
 Client.o: Client.cpp
-	g++ -c Client.cpp
+	g++ -c -g Client.cpp
 StreamSock.o: StreamSock.cpp
-	g++ -c StreamSock.cpp
+	g++ -c -g StreamSock.cpp
 
 
 clean:
