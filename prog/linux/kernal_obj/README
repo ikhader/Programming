@@ -1,11 +1,75 @@
 This netfilters are good to use.
 
+make files for different for different module:
+==============================================
+drop_all: drop_input.c
+drop_local: drop_lo 
+
+comamnd: make --makefile drop_all
+
 kernel module
 ============
 1. init_module: register kernal object
 2. cleanup_module: unregister kernal module
 3. as part of resgistration we register a "hook" function that will be invoked with most of the information that we need.
 
+net filters:
+1. these are used for firewalls.
+2. we can drop/control packets 
+3. stages of netfilters
+  [INPUT]--->[1]--->[ROUTE]--->[3]--->[4]--->[OUTPUT]
+                       |            ^
+                       |            |
+                       |         [ROUTE]
+                       v            |
+                      [2]          [5]
+                       |            ^
+                       |            |
+                       v            |
+                    [INPUT*]    [OUTPUT*]
+      [1]  NF_IP_PRE_ROUTING
+      [2]  NF_IP_LOCAL_IN
+      [3]  NF_IP_FORWARD
+      [4]  NF_IP_POST_ROUTING
+      [5]  NF_IP_LOCAL_OUT
+      [*]  Network Stack  
+
+4. at the hooks we can do any thing with the packets
+    NF_ACCEPT: accept the packet (continue network stack trip)
+    NF_DROP: drop the packet (don't continue trip)
+    NF_REPEAT: repeat the hook function
+    NF_STOLEN: hook steals the packet (don't continue trip)
+    NF_QUEUE: queue the packet to userspace                        
+5. linux/netfilter.h
+   struct nf_hook_ops
+   {
+     struct list_head list;
+     nf_hookfn *hook;
+     int pf;
+     int hooknum;
+     int priority;
+   };
+   list: linked list maintains the list of net filters
+   hook: hook function, assing our hook here
+   pf: protocol family; for IPV4: PF_INET
+   hooknum: hook we want to use (NF_IP_PRI_FIRST)
+   priority: is defined under linux/netfilter_ip4.h
+      enum nf_ip_hook_priorities {
+          NF_IP_PRI_FIRST = INT_MIN,
+          NF_IP_PRI_CONNTRACK_DEFRAG = -400,
+          NF_IP_PRI_RAW = -300,
+          NF_IP_PRI_SELINUX_FIRST = -225,
+          NF_IP_PRI_CONNTRACK = -200,
+          NF_IP_PRI_MANGLE = -150,
+          NF_IP_PRI_NAT_DST = -100,
+          NF_IP_PRI_FILTER = 0,
+          NF_IP_PRI_SECURITY = 50,
+          NF_IP_PRI_NAT_SRC = 100,
+          NF_IP_PRI_SELINUX_LAST = 225,
+          NF_IP_PRI_CONNTRACK_HELPER = 300,
+          NF_IP_PRI_CONNTRACK_CONFIRM = INT_MAX,
+          NF_IP_PRI_LAST = INT_MAX,
+       };
 Create your own netfilters for various reasons
   1. drop_input.c ==> this will drop all 
 
