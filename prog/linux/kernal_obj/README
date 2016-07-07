@@ -72,10 +72,12 @@ net filters:
        };
 Create your own netfilters for various reasons
   1. drop_input.c ==> this will drop all 
+  2. drop_local.c ==> this will drop all packets on local host 
 
 
 Version: 
-drop_input.c:
+drop_input.c
+drop_local.c
 
 
 
