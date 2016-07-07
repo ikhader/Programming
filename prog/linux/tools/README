@@ -1,0 +1,36 @@
+Tools: 
+valgrind: we can use this for memory check
+file:
+t_valgrind:
+leak of 1024 bytes is done intentionally
+
+to run:
+gcc t_valgrind.c
+valgrind ./a.out ==> this will give leak size
+
+t_gprof:
+steps todo:
+
+ls
+t_gprof.c
+
+gcc -Wall -pg t_gprof.c -o t_g
+
+ls
+t_gprof.c t_g
+
+./t_g
+ls
+t_gprof.c t_g gmon.out
+
+
+finally:
+gprof t_g gmon.out > a.txt
+
+ls
+t_gprof.c t_g gmon.out a.txt
+
+check 'a.txt' for all details
+
+
+
