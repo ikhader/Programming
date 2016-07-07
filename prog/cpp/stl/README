@@ -1,0 +1,30 @@
+
+
+Containers are available in STL library
+
+sequence container
+  * stores data by position in linear order:
+  * first, second, thrid element
+  ex: vector, queue, list
+
+associate container:
+  * stores elements by keys -- map
+    ex: set, multiset
+        Map, multimap
+
+adapter container:
+  * contains another container as its underlynig storage
+    ex: stack, queue, priority_queue
+    
+
+
+types of containers:
+vector: dynamic arrays
+queue:
+stack
+heaps (priority_queue)
+linked lists (list)
+trees (set)
+associative arrays (map)
+
+
