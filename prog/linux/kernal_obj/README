@@ -1,0 +1,18 @@
+This netfilters are good to use.
+
+kernel module
+============
+1. init_module: register kernal object
+2. cleanup_module: unregister kernal module
+3. as part of resgistration we register a "hook" function that will be invoked with most of the information that we need.
+
+Create your own netfilters for various reasons
+  1. drop_input.c ==> this will drop all 
+
+
+Version: 
+drop_input.c:
+
+
+
+
