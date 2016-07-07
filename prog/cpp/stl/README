@@ -28,3 +28,10 @@ trees (set)
 associative arrays (map)
 
 
+example:
+set.cpp
+set ==> will have just a 'key', repetetion not allowd
+map ==> will have 'key, value' ==> key must be unique. NO repetition
+mutliset ==> same as set, but repetetion is & stored and listed
+multimap ==> same as map, repetetion allowd, stored & listed
+
