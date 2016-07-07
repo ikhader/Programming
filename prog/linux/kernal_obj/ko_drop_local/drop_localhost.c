@@ -1,6 +1,7 @@
 #include <linux/module.h>
 #include <linux/netfilter.h>
 #include <linux/netfilter_ipv4.h>
+#include <linux/netdevice.h> 
 
 static struct nf_hook_ops netfilter_ops_in;
 
@@ -9,7 +10,7 @@ unsigned int netfilter_input_hook(unsigned int hooknum, struct sk_buff **skb,
                   int (*okfn)(struct skbuff*))
 {
   char interface[] = "lo";
-  if(strcmp(in->name,interface) == 0)
+  if(strcmp(in->name, interface) == 0)
   { 
     printk(KERN_INFO "Dropping loopback ip packet");
     return NF_DROP; 
