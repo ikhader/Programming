@@ -21,3 +21,8 @@ Part 1: removes all duplicates from the vector string
 
 Part 2: count number of occurance of each word and return their map
 
+binary_tree.c:
+create a binary tree<min on left; max on right>.. tree height will not be adjusted
+find sum of all elements
+find min
+find max
