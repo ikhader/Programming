@@ -12,3 +12,12 @@
 
 readabel_rev.c:
   flips to readable reverse
+
+string_repetition.cpp
+Part 1: removes all duplicates from the vector string
+   implementation:
+     1. push each word into a map
+     2. print each element out of map
+
+Part 2: count number of occurance of each word and return their map
+
