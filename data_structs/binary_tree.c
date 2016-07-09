@@ -51,6 +51,13 @@ int binarytree_getmin(stnode *pstHead)
   return min(pstHead->data, binarytree_getmin(pstHead->l));
 }
 
+int binarytree_getmiddlevalue(stnode *h)
+{
+  if (h == NULL)
+    return -1;
+  
+}
+
 bool binarytree_addnode(stnode **pstHead, int data)
 {
   stnode *t, *p ;
