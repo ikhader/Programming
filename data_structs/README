@@ -4,25 +4,24 @@
 3. sort
 4. search
 5. tree
-   a. add nodes
-   b. find sum of all elements
+   a. add nodes ==> done
+   b. find sum of all elements ==> done
    c. print tree ==> tough but try
    d. Amazon question ==> link in the tree that has sum of nodes = 30
 
 
-readabel_rev.c:
+readabel_rev.c: ==> done
   flips to readable reverse
 
-string_repetition.cpp
+string_repetition.cpp ==> done
 Part 1: removes all duplicates from the vector string
    implementation:
      1. push each word into a map
      2. print each element out of map
-
 Part 2: count number of occurance of each word and return their map
 
 binary_tree.c:
 create a binary tree<min on left; max on right>.. tree height will not be adjusted
-find sum of all elements
-find min
-find max
+find sum of all elements ==> done
+find min ==> done
+find max ==> done

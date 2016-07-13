@@ -39,7 +39,7 @@ void bubble_sort(int a[], int l, int r)
 
 int main(int argc, char *argv[])
 {
-  int a[] = {90, 10, 50, 60, 100, 20, 5, 110};
+  int a[] = {90, 10, 50, 60, 100, 20, 5, 110, -1};
   int i = 0;
 
   printf("before sorting \n");
