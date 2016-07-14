@@ -1,5 +1,5 @@
 
---function to pring message
+--function to print message
 function print_msg(m)
   print (m)
 end

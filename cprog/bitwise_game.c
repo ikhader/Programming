@@ -20,6 +20,17 @@ void print_bits(char a)
   printf("\n");
 }
 
+int get_num_of_bits_set(char a)
+{
+  int cnt = 0, i;
+  
+  for(i = 0; i < 8; i++)
+  {
+    if(IS_BIT_SET(a, i))
+      cnt++;
+  }
+  return cnt;
+}
 
 int main(int argc, char *argv[])
 {
@@ -33,12 +44,10 @@ int main(int argc, char *argv[])
   printf("3rd bit set: binary format for %d: \n", c);
   print_bits(c); 
 
-
   UNSET_BIT(c, 3);
   printf("3rd bit UNset: binary format for %d: \n", c);
   print_bits(c); 
   
-
   FLIP_BIT(c, 3);
   printf("3rd bit FLIP: binary format for %d: \n", c);
   print_bits(c); 
@@ -46,6 +55,11 @@ int main(int argc, char *argv[])
   FLIP_BIT(c, 3);
   printf("3rd bit FLIP: binary format for %d: \n", c);
   print_bits(c); 
+
+  SET_BIT(c, 4);
+  printf("[%d] bits are set \n", get_num_of_bits_set(c));
+  print_bits(c); 
+
 }
 
 
