@@ -23,3 +23,19 @@ Tupples: a sequence of immutable python objects
 
 
 dictonary: 
+
+
+
+Database details:
+open data base: sqlite3 test.db
+view tables: .tables;
+schema of tables: .schema
+==to have nice graphical print==
+  .mode column
+  .headers on
+  select * from Cars;
+
+==to close connection
+.quit 
+
+
