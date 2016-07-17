@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 
 #define IS_BIT_SET(c, pos) (c & (1 << pos -1)) 
