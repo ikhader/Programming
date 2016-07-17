@@ -19,6 +19,7 @@ else :
   print "bad bad bad"
 
 
+
 #loop
 cnt = 0
 while (cnt < 5):
@@ -61,5 +62,9 @@ print("Tupples is")
 list_print(t)
 
 
+a = "HELLO"
 
-
+print "&&&&&&&&&&&&&&&&&&&&&"
+ka = "test '%s' example" 
+t = ka % a
+print t
