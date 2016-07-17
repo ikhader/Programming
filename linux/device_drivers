@@ -1,0 +1,18 @@
+
+Basically we have three types of device drivers:
+1. char driver: 
+      drivers are usually treat devices as files
+      implmentation of open, close, read & write are mandated
+      console & parleele ports are examples
+      accessed by  means of file names like /dev/tty1/ or /dev/lp1
+2. block driver
+      dirver can host file system such has a disk
+      data can only be accessed in fixed block sizes  usually 1KB block
+      char & block dirvers are mostly same from developer prospective. Kernal sheilds us from the internals
+      char & block diff is only way how data is managed again sheilded by kernal
+      
+3. network interface
+      data exchange with different hosts
+      though its hardware based(eth0) it can also be only a software device(lo)
+      not begin stream oriented like char & block dirvers kernel handles these network interface differently
+
