@@ -63,8 +63,9 @@ list_print(t)
 
 
 a = "HELLO"
+b = "WORLD"
 
 print "&&&&&&&&&&&&&&&&&&&&&"
-ka = "test '%s' example" 
-t = ka % a
+ka = "test '%s' '%s' example" 
+t = ka % (a , b)
 print t

@@ -8,7 +8,7 @@ class Sqlite:
   default_table_name = "employee_info"
   default_database_name = "employe.db"
   #default_table_vals = "(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Password TEXT, Phonenum INT, Mailid TEXT)"
-  default_table_vals = "(Name TEXT)"
+  default_table_vals = "(Name TEXT, Password TEXT, Phonenum TEXT, Mailid TEXT)"
 
   def __init__ (self, t_name = default_table_name, f_name = default_database_name):
     self.__table_name = t_name
@@ -36,11 +36,9 @@ class Sqlite:
   def add_record(self, userid, passwd, phone_number, mailid):
     con = None
     #qur = "INSERT INTO " + self.__table_name + " VALUES( '%s', '%s', '%d', '%s' )" 
-    qur = "INSERT INTO " + self.__table_name + " VALUES('%s')" 
+    qur = "INSERT INTO " + self.__table_name + " VALUES('%s', '%s', '%s', '%s')" 
     print qur
-    u = "userid"
-    p = "password"
-    query = qur % userid  #% phone_number % mailid 
+    query = qur %(userid, passwd, phone_number, mailid)
     print query
     con = lite.connect(self.__file_name)
     with con:
@@ -52,9 +50,9 @@ class Sqlite:
 
 def main():
   st = (
-          ("name_1", "name_1", 4697735274, "name_1@name_1.com"),
-          ("name_2", "name_2", 4697735271, "name_2@name_2.com"),
-          ("name_3", "name_3", 4697735272, "name_3@name_3.com")
+          ("name_1", "name_1", "4697735274", "name_1@name_1.com"),
+          ("name_2", "name_2", "4697735271", "name_2@name_2.com"),
+          ("name_3", "name_3", "4697735272", "name_3@name_3.com")
        )
   sq = Sqlite()
   sq.add_record("a", "b", "123", "a@b.com")
