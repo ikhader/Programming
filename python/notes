@@ -1,0 +1,6 @@
+
+INSERT INTO employee_info VALUES(null, "aa", "aa", "11", "a@aa.com");
+INSERT INTO employee_info VALUES(null, "bb", "bb", "22", "b@bb.com");
+
+
+select * from employee_info;
