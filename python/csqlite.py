@@ -5,16 +5,14 @@ TODO:
 change default value of employee (primary key) to 1001
 '''
 
-
 import sqlite3 as lite
 import sys
 
-class Sqlite:
+class EmpDetails:
   #default varaibles
   default_table_name = "employee_info"
   default_database_name = "employe.db"
-  default_emp_start = 1000
-  #default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Password TEXT, Phonenum TEXT, Mailid TEXT)"
+  default_emp_start = 1001
   default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT)"
   
 
@@ -29,6 +27,7 @@ class Sqlite:
   def create_database(self):
     query = "create table if not exists " + self.__table_name + " " + self.default_table_vals
     conn = None
+
     try:
       conn = lite.connect(self.__file_name)
       conn.execute(query)
@@ -55,9 +54,6 @@ class Sqlite:
     with con:
       cur = con.cursor()
       cur.execute(query)
-    #  data = cur.fetchone()
-    #  print "SQLITE version: %s" % data
-  
 
 def main():
   st = (
@@ -65,7 +61,7 @@ def main():
           ("name_2", "name_2", "4697735271", "name_2@name_2.com", "v2@v2.com"),
           ("name_3", "name_3", "4697735272", "name_3@name_3.com", "v3@v3.com")
        )
-  sq = Sqlite()
+  sq = EmpDetails()
   sq.add_record("a", "b", "123", "a@b.com", "va@va.com")
   for s in st:
     sq.add_record(s[0], s[1], s[2], s[3], s[4])
