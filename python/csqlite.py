@@ -3,6 +3,13 @@
 '''
 TODO:
 change default value of employee (primary key) to 1001
+
+secret questions:
+1. year of degree passout
+2. place of birth
+3. first school name
+4. fav resturant
+5. fav color
 '''
 
 import sqlite3 as lite
@@ -13,9 +20,13 @@ class EmpDetails:
   default_table_name = "employee_info"
   default_database_name = "employe.db"
   default_emp_start = 1001
+#  default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT, secret_question_1 TEXT, secret_q1_ans TEXT, secret_question_2 TEXT, secret_q2_ans TEXT)"
   default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT)"
   
 
+  '''
+    initialize all details
+  '''
   def __init__ (self, t_name = default_table_name, f_name = default_database_name):
     self.__table_name = t_name
     self.__file_name = f_name
@@ -24,6 +35,9 @@ class EmpDetails:
     print "file name", self.__file_name
     self.create_database()
 
+  '''
+    create tables if not found; set all the required feilds
+  '''
   def create_database(self):
     query = "create table if not exists " + self.__table_name + " " + self.default_table_vals
     conn = None
@@ -44,27 +58,64 @@ class EmpDetails:
         print "closing database"
         conn.close()
 
+  '''
+    add record with all details; no validation is done here
+  '''
   def add_record(self, userid, passwd, phone_number, mailid, ven_mailid):
     con = None
     qur = "INSERT INTO " + self.__table_name + " VALUES(null, '%s', '%s', '%s', '%s', '%s')" 
-    print qur
     query = qur %(userid, passwd, phone_number, mailid, ven_mailid)
-    print query
     con = lite.connect(self.__file_name)
     with con:
       cur = con.cursor()
       cur.execute(query)
 
+  '''
+    validates employe number & password returns bool
+  '''
+  def validate_credentials(self, emp_num, passwd):
+    qur = "select * FROM " + self.__table_name + " where employee_id = %s"
+    query = qur %(emp_num) 
+    con = None
+    con = lite.connect(self.__file_name)
+    with con:
+      cur = con.cursor()
+      cur.execute(query)
+      rows = cur.fetchall()
+      if len(rows) > 1 :
+        print "NEVER SEE THIS MESSAGE: more than one employee with same employee number"
+        return False
+      for row in rows:
+        if row[2] == passwd:
+          return True
+    return False
+
+
+
+  '''
+    main to test basic functionality
+  '''
 def main():
   st = (
           ("name_1", "name_1", "4697735274", "name_1@name_1.com", "v1@v1.com"),
           ("name_2", "name_2", "4697735271", "name_2@name_2.com", "v2@v2.com"),
           ("name_3", "name_3", "4697735272", "name_3@name_3.com", "v3@v3.com")
        )
+
   sq = EmpDetails()
   sq.add_record("a", "b", "123", "a@b.com", "va@va.com")
   for s in st:
     sq.add_record(s[0], s[1], s[2], s[3], s[4])
+
+  if(sq.validate_credentials("1", "b")):
+    print("VALID USERID & PASSWORD")
+  else: 
+    print("INVALID USERID & PASSWORD")
+
+  if(sq.validate_credentials("20000", "name_2")):
+    print("VALID USERID & PASSWORD")
+  else:
+    print("INVALID USERID & PASSWORD")
 
 if __name__ == "__main__":
   main()

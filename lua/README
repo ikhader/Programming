@@ -1,0 +1,49 @@
+
+###string
+
+
+################ THREADS  ####################
+create thread:
+co = coroutine.create(function ()
+           print("hi")
+         end)
+thread can be in any one of these three states: suspended, running, dead
+yeild: makes thread to suspend temporarily
+coroutine.resume() ==> brings back thread to alive
+
+
+
+
+################ C FUNCTIONS ####################
+
+prototype:
+typedef int (*lua_CFunction) (lua_State *L);
+example:
+static int isquare(lua_State *L)
+
+Function defintion:
+lua_register: registers c functions 
+ex:  lua_register(
+                        L,               /* Lua state variable */
+                        "square",        /* func name as known in Lua */
+                        isquare          /* func name in this file */
+                        );
+
+
+int            lua_toboolean (lua_State *L, int index);
+double         lua_tonumber (lua_State *L, int index);
+const char    *lua_tostring (lua_State *L, int index);
+size_t         lua_strlen (lua_State *L, int index);
+
+lua_tonumber(L, -1) ==> Get the single number arg
+
+lua_pushnumber(L,rtrn_1); ==> push all the values that must be return'ed
+lua_pushnumber(L,rtrn_2); ==> push all the values that must be return'ed
+function (isquare)in our exmple must number of elements pushed by using 'lua_pushnumber' 
+
+
+void lua_pushnil (lua_State *L);
+void lua_pushboolean (lua_State *L, int bool);
+void lua_pushnumber (lua_State *L, double n);
+void lua_pushlstring (lua_State *L, const char *s, size_t length);
+void lua_pushstring (lua_State *L, const char s);
