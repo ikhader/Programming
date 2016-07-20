@@ -20,9 +20,7 @@ class EmpDetails:
   default_table_name = "employee_info"
   default_database_name = "employe.db"
   default_emp_start = 1001
-  default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT, secret_question_1 TEXT, secret_q1_ans TEXT, secret_question_2 TEXT, secret_q2_ans TEXT)"
-  #default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT)"
-  
+  default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT, secret_q1 TEXT, q1_ans TEXT, secret_q2 TEXT, q2_ans TEXT)"
 
   '''
     initialize all details
@@ -90,15 +88,8 @@ class EmpDetails:
           return True
     return False
 
-
-
   '''
     main to test basic functionality
-1. year of degree passout
-2. place of birth
-3. first school name
-4. fav resturant
-5. fav color
   '''
 def main():
   st = (
