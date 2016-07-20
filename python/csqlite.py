@@ -20,8 +20,8 @@ class EmpDetails:
   default_table_name = "employee_info"
   default_database_name = "employe.db"
   default_emp_start = 1001
-#  default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT, secret_question_1 TEXT, secret_q1_ans TEXT, secret_question_2 TEXT, secret_q2_ans TEXT)"
-  default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT)"
+  default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT, secret_question_1 TEXT, secret_q1_ans TEXT, secret_question_2 TEXT, secret_q2_ans TEXT)"
+  #default_table_vals = "(employee_id INTEGER PRIMARY KEY AUTOINCREMENT, emp_name TEXT, emp_password TEXT, emp_phonenum TEXT, emp_mailid TEXT, vendor_mailid TEXT)"
   
 
   '''
@@ -61,10 +61,10 @@ class EmpDetails:
   '''
     add record with all details; no validation is done here
   '''
-  def add_record(self, userid, passwd, phone_number, mailid, ven_mailid):
+  def add_record(self, userid, passwd, phone_number, mailid, ven_mailid, q1, q1_ans, q2, q2_ans):
     con = None
-    qur = "INSERT INTO " + self.__table_name + " VALUES(null, '%s', '%s', '%s', '%s', '%s')" 
-    query = qur %(userid, passwd, phone_number, mailid, ven_mailid)
+    qur = "INSERT INTO " + self.__table_name + " VALUES(null, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" 
+    query = qur %(userid, passwd, phone_number, mailid, ven_mailid, q1, q1_ans, q2, q2_ans)
     con = lite.connect(self.__file_name)
     with con:
       cur = con.cursor()
@@ -94,18 +94,23 @@ class EmpDetails:
 
   '''
     main to test basic functionality
+1. year of degree passout
+2. place of birth
+3. first school name
+4. fav resturant
+5. fav color
   '''
 def main():
   st = (
-          ("name_1", "name_1", "4697735274", "name_1@name_1.com", "v1@v1.com"),
-          ("name_2", "name_2", "4697735271", "name_2@name_2.com", "v2@v2.com"),
-          ("name_3", "name_3", "4697735272", "name_3@name_3.com", "v3@v3.com")
+          ("name_1", "name_1", "4697735274", "name_1@name_1.com", "v1@v1.com", "degree passout", "2003", "school name", "abcd"),
+          ("name_2", "name_2", "4697735271", "name_2@name_2.com", "v2@v2.com", "degree passout", "2013", "school name", "wyzz"),
+          ("name_3", "name_3", "4697735272", "name_3@name_3.com", "v3@v3.com", "degree passout", "2123", "fav resturnt", "KFC")
        )
 
   sq = EmpDetails()
-  sq.add_record("a", "b", "123", "a@b.com", "va@va.com")
+  sq.add_record("a", "b", "123", "a@b.com", "va@va.com", "place of birth", "pilery", "fav resturnt", "KFC")
   for s in st:
-    sq.add_record(s[0], s[1], s[2], s[3], s[4])
+    sq.add_record(s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8])
 
   if(sq.validate_credentials("1", "b")):
     print("VALID USERID & PASSWORD")
