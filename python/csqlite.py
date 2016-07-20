@@ -88,6 +88,31 @@ class EmpDetails:
           return True
     return False
 
+  
+  '''
+    validate employe number & secret questions and answers
+    5, 7 questions
+    6, 8 answers
+  '''
+  def validate_secretquestion(self, emp_num, q, ans):
+    qur = "select * FROM " + self.__table_name + " where employee_id = %s"
+    query = qur %(emp_num) 
+    con = None
+    con = lite.connect(self.__file_name)
+    with con:
+      cur = con.cursor()
+      cur.execute(query)
+      rows = cur.fetchall()
+      if len(rows) > 1 :
+        print "NEVER SEE THIS MESSAGE: more than one employee with same employee number"
+        return False
+      for row in rows:
+        if row[6] == q and row[7] == ans:
+          return True
+        elif row[8] == q and row[9] == ans:
+          return True
+    return False
+
   '''
     main to test basic functionality
   '''
@@ -112,6 +137,16 @@ def main():
     print("VALID USERID & PASSWORD")
   else:
     print("INVALID USERID & PASSWORD")
+
+  if(sq.validate_secretquestion("1", "place of birth", "piler")):
+    print("VALID question & answers")
+  else:
+    print("INVALID question & answers")
+   
+  if(sq.validate_secretquestion("1", "place of birth", "pilery")):
+    print("VALID question & answers")
+  else:
+    print("INVALID question & answers")
 
 if __name__ == "__main__":
   main()
