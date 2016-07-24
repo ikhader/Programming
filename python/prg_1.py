@@ -1,4 +1,6 @@
 #! /usr/bin/python
+from datetime import datetime, timedelta
+import datetime
 
 #comments
 # print on console
@@ -65,7 +67,28 @@ list_print(t)
 a = "HELLO"
 b = "WORLD"
 
-print "&&&&&&&&&&&&&&&&&&&&&"
 ka = "test '%s' '%s' example" 
 t = ka % (a , b)
 print t
+
+
+#dictonary examples
+dict_dict = {
+              1: {"name" : "Khader", "age" : 30, "height": 6},
+              2: {"name" : "Basha", "age" : 32, "height": 2}
+            }
+print dict_dict
+
+print "&&&&&&&&&&&&&&&&&&&&&"
+for key, value in dict_dict.iteritems() :
+    print value
+print "&&&&&&&&&&&&&&&&&&&&&"
+d = {}
+
+cnt = 1
+while (cnt < 5):
+  y = datetime.date.fromordinal(datetime.date.today().toordinal()-cnt).strftime("%F") 
+  d[y] = cnt * 10;
+  cnt = cnt + 1
+
+print d

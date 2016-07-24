@@ -5,3 +5,5 @@ INSERT INTO employee_info VALUES(null, "bb", "bb", "22", "b@bb.com");
 .mode column
 .headers on
 select * from employee_info;
+.schema
+.tables

@@ -39,18 +39,20 @@ class EmpDetails:
   '''
     initialize all details
   '''
-  def __init__ (self, t_name = default_table_name, f_name = default_database_name):
+  def __init__ (self, log, t_name = default_table_name, f_name = default_database_name):
     self.__table_name = t_name
     self.__file_name = f_name
     self.__file_name = f_name
     print "db name", self.__table_name
     print "file name", self.__file_name
-    self.create_database()
+    self.log = log
+    self.__create_database()
+    self.empdetails = EmpWorkHours(self.log)
 
   '''
     create tables if not found; set all the required feilds
   '''
-  def create_database(self):
+  def __create_database(self):
     query = "create table if not exists " + self.__table_name + " " + self.default_table_vals
     conn = None
 
@@ -73,8 +75,9 @@ class EmpDetails:
   '''
     add record with all details; no validation is done here
   '''
-  def add_record(self, userid, passwd, phone_number, mailid, ven_mailid, q1, q1_ans, q2, q2_ans):
+  def add_emp_record(self, userid, passwd, phone_number, mailid, ven_mailid, q1, q1_ans, q2, q2_ans):
     con = None
+    lid = -1
     qur = "INSERT INTO " + self.__table_name + " VALUES(null, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" 
     query = qur %(userid, passwd, phone_number, mailid, ven_mailid, q1, q1_ans, q2, q2_ans)
     con = lite.connect(self.__file_name)
@@ -82,14 +85,22 @@ class EmpDetails:
       cur = con.cursor()
       cur.execute(query)
       lid = cur.lastrowid
-      print "###########################last row id: %d" % lid
+
+    self.empdetails.create_employe_entry(lid)
+    return lid 
+
+  def add_work_hours(self, userid, passwd, work_hours):
+    if(not self.validate_credentials(userid, passwd) ):
+      print "INVALID CREDENTIALS TO ADD WORK HOURS"
+      return False;
+    self.empdetails.add_work_hours(userid, work_hours)
 
   '''
     validates employe number & password returns bool
   '''
-  def validate_credentials(self, emp_num, passwd):
+  def validate_credentials(self, emp_name, passwd):
     qur = "select * FROM " + self.__table_name + " where employee_id = %s"
-    query = qur %(emp_num) 
+    query = qur %(emp_name) 
     con = None
     con = lite.connect(self.__file_name)
     with con:
@@ -129,6 +140,10 @@ class EmpDetails:
           return True
     return False
 
+
+'''
+  TODO: Make this class accessible with in the file; 
+'''
 class EmpWorkHours:
   default_table_name = "employee_workhours"
   default_database_name = "employe.db"
@@ -137,7 +152,7 @@ class EmpWorkHours:
   '''
     initialize all details
   '''
-  def __init__ (self, t_name = default_table_name, f_name = default_database_name):
+  def __init__ (self, log, t_name = default_table_name, f_name = default_database_name):
     self.__table_name = t_name
     self.__file_name = f_name
     print "db name", self.__table_name
@@ -171,68 +186,27 @@ class EmpWorkHours:
     with con:
       cur = con.cursor()
       cur.execute(query)
+      con.commit()
 
 
   '''
     add record with all details; no validation is done here
   '''
-  def add_record(self, emp_num, date, work_hours):
-    #add record only if emp_num exist in the Master table structure 'EmpDetails'
+  def add_work_hours(self, emp_num, date_hours):
+
+    if len(date_hours) == 0:
+      print "working hours cannot be 0"
+      return False
+
+    qur = "INSERT INTO " + self.__table_name + " VALUES('%d', '%s', '%s')"
     con = None
-    qur = "INSERT INTO " + self.__table_name + " VALUES('%d', '%s', '%f')"
-    query = qur %(emp_num, date, work_hours)
     con = lite.connect(self.__file_name)
     with con:
       cur = con.cursor()
-      cur.execute(query)
+      for k, v in date_hours.iteritems():
+        query = qur %(emp_num, k, v)
+        cur.execute(query)
+        con.commit()
 
-  '''
-    main to test basic functionality
-  '''
-def main():
-  sw = EmpWorkHours()
-  sw.create_employe_entry(20)
-  sw.create_employe_entry(30)
-  yesterday = datetime.date.fromordinal(datetime.date.today().toordinal()-1).strftime("%F") 
-  sw.add_record(123, yesterday, 10.5)
-
-  yesterday = datetime.date.fromordinal(datetime.date.today().toordinal()-2).strftime("%F") 
-  sw.add_record(123, yesterday, 12.5)
-
-  yesterday = datetime.date.fromordinal(datetime.date.today().toordinal()-3).strftime("%F") 
-  sw.add_record(123, yesterday, 5)
-  st = (
-          ("name_1", "name_1", "4697735274", "name_1@name_1.com", "v1@v1.com", "degree passout", "2003", "school name", "abcd"),
-          ("name_2", "name_2", "4697735271", "name_2@name_2.com", "v2@v2.com", "degree passout", "2013", "school name", "wyzz"),
-          ("name_3", "name_3", "4697735272", "name_3@name_3.com", "v3@v3.com", "degree passout", "2123", "fav resturnt", "KFC")
-       )
-
-  sq = EmpDetails()
-  sq.add_record("a", "b", "123", "a@b.com", "va@va.com", "place of birth", "pilery", "fav resturnt", "KFC")
-  for s in st:
-    sq.add_record(s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8])
-
-'''
-  if(sq.validate_credentials("1", "b")):
-    print("VALID USERID & PASSWORD")
-  else: 
-    print("INVALID USERID & PASSWORD")
-
-  if(sq.validate_credentials("20000", "name_2")):
-    print("VALID USERID & PASSWORD")
-  else:
-    print("INVALID USERID & PASSWORD")
-
-  if(sq.validate_secretquestion("1", "place of birth", "piler")):
-    print("VALID question & answers")
-  else:
-    print("INVALID question & answers")
-   
-  if(sq.validate_secretquestion("1", "place of birth", "pilery")):
-    print("VALID question & answers")
-  else:
-    print("INVALID question & answers")
-'''
-if __name__ == "__main__":
-  main()
+    return True
 
