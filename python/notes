@@ -7,3 +7,13 @@ INSERT INTO employee_info VALUES(null, "bb", "bb", "22", "b@bb.com");
 select * from employee_info;
 .schema
 .tables
+
+per day workhours:
+select * from employee_workhours where employee_id = 1 and Date(billing_date) = '2016-07-20';
+
+range of work hours:
+select * from employee_workhours where employee_id = 1  between Date(billing_date) > '2016-07-21' and Date(billing_date)< '2016-07-23' and employee_id ==1;
+
+total working hours:
+select sum(billing_hours) from employee_workhours where employee_id = 1  between Date(billing_date) > '2016-07-21' and Date(billing_date)< '2016-07-23' and employee_id ==1;
+
