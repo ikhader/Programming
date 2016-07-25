@@ -95,6 +95,11 @@ class EmpDetails:
       return False;
     self.empdetails.add_work_hours(userid, work_hours)
 
+  def get_total_work_hours(self, userid, passwd, month):
+    if(not self.validate_credentials(userid, passwd) ):
+      print "INVALID CREDENTIALS TO ADD WORK HOURS"
+      return False;
+    self.empdetails.get_total_work_hours_of_month(userid, month)
   '''
     validates employe number & password returns bool
   '''
@@ -188,7 +193,6 @@ class EmpWorkHours:
       cur.execute(query)
       con.commit()
 
-
   '''
     add record with all details; no validation is done here
   '''
@@ -209,4 +213,28 @@ class EmpWorkHours:
         con.commit()
 
     return True
+
+  '''
+    gets total work hours of emp_num for month(1-12)
+  '''  
+  def get_total_work_hours_of_month(self, emp_num, month):
+
+    total_work_hours = 0
+    if type(month) is not int:
+      print("conversion need to be done")
+      return total_work_hours
+
+    #qur = "select * FROM " + self.__table_name + " where Date(billing_date) between employee_id = %s "
+    qur = "select * from employee_workhours where  Date(billing_date) between  '2016-07-01' and  '2016-07-30' and employee_id = 1"
+    con = None
+    con = lite.connect(self.__file_name)
+    with con:
+      cur = con.cursor()
+      cur.execute(qur)
+      rows = cur.fetchall()
+      for row in rows:
+        print row
+    
+
+
 

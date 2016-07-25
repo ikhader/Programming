@@ -92,3 +92,11 @@ while (cnt < 5):
   cnt = cnt + 1
 
 print d
+
+cnt = "hello"
+if type(cnt) is int:
+  print "cnt is integer"
+else:
+  print "not integer"
+
+

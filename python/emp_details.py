@@ -29,6 +29,8 @@ class Employe_details:
       s['emp_id'] = self.__emp_dets.add_emp_record(s['name'], s['password'], s['phone'], s['mail'], s['Vendor'], s['sec_q1'], s['sec_q1_a'], s['sec_q2'], s['sec_q2_a'])
       self.__emp_dets.add_work_hours(s['emp_id'], s['password'], d) 
 
+    self.__emp_dets.get_total_work_hours("1", "name_1", 1)
+
 
 l = logger()
 e = Employe_details(l)
