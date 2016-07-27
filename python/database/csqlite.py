@@ -16,6 +16,8 @@ import sqlite3 as lite
 import sys
 from datetime import datetime, timedelta
 import datetime
+import calendar 
+import time
 
 '''
   EmDetails stores employe details in database
@@ -99,7 +101,8 @@ class EmpDetails:
     if(not self.validate_credentials(userid, passwd) ):
       print "INVALID CREDENTIALS TO ADD WORK HOURS"
       return False;
-    self.empdetails.get_total_work_hours_of_month(userid, month)
+    self.empdetails.get_total_work_hours(userid, month)
+
   '''
     validates employe number & password returns bool
   '''
@@ -216,25 +219,43 @@ class EmpWorkHours:
 
   '''
     gets total work hours of emp_num for month(1-12)
-  '''  
   def get_total_work_hours_of_month(self, emp_num, month):
 
     total_work_hours = 0
-    if type(month) is not int:
-      print("conversion need to be done")
-      return total_work_hours
+    #if type(month) is not int:
+    #  print("anversion need to be done")
+    #  return total_work_hours
 
-    #qur = "select * FROM " + self.__table_name + " where Date(billing_date) between employee_id = %s "
-    qur = "select * from employee_workhours where  Date(billing_date) between  '2016-07-01' and  '2016-07-30' and employee_id = 1"
+    qur = "select * FROM  %s where Date(billing_date) between '2016-07-01' and  '2016-07-30' and employee_id = %s "
+    query = qur %(self.__table_name, emp_num)
+    print query
+    #qur = "select * from employee_workhours where  Date(billing_date) between  '2016-07-01' and  '2016-07-30' and employee_id = 1"
     con = None
     con = lite.connect(self.__file_name)
     with con:
       cur = con.cursor()
-      cur.execute(qur)
+      cur.execute(query)
       rows = cur.fetchall()
       for row in rows:
         print row
-    
 
+    self.get_total_work_hours(emp_num, month)
+  '''  
 
+  def get_total_work_hours(self, emp_num, month):
+    qur = "select sum(billing_hours) FROM  %s where Date(billing_date) between '%s' and  '%s' and employee_id = %s "
+    year = time.strftime("%Y")
+    con = None
+    con = lite.connect(self.__file_name)
+    cur = con.cursor()
+
+    for i in month:
+      start_date = ("%s-%s-%s" %(year, str(i).zfill(2), "01"))
+      end_date = ("%s-%s-%s" %(year, str(i), calendar.monthrange(int(year), i)[1]))
+      query = qur % (self.__table_name, start_date, end_date, emp_num)
+    with con:
+      cur.execute(query)
+      total_work_hours =  cur.fetchone()
+      print "total work hours: %d" %total_work_hours
+     
 

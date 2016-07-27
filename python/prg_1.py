@@ -1,7 +1,7 @@
 #! /usr/bin/python
 from datetime import datetime, timedelta
 import datetime
-
+import calendar
 #comments
 # print on console
 print "Hello Wolrd"
@@ -79,10 +79,8 @@ dict_dict = {
             }
 print dict_dict
 
-print "&&&&&&&&&&&&&&&&&&&&&"
 for key, value in dict_dict.iteritems() :
     print value
-print "&&&&&&&&&&&&&&&&&&&&&"
 d = {}
 
 cnt = 1
@@ -99,4 +97,13 @@ if type(cnt) is int:
 else:
   print "not integer"
 
+
+month = [1, 2, 3, 4]
+
+if type(month) == list:
+  print "$$$$$$$$$$$$$$ LIST LIST LIST $$$$$$$$$$$$$$$$"
+
+for i in month:
+  start_date = ("%s-%s-%s" %(year, str(i), "01"))
+  print calendar.monthrange(2012, i)
 
