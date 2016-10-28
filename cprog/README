@@ -13,3 +13,10 @@
 
 
 
+
+GOOD to know:
+
+memory leaks:
+1. Valgrind is used to memory leaks. Valgrind can be attached to the running process also
+2. Memprof is the utility used to do memory leaking issues. This excutable must be linked with this c-library
+
