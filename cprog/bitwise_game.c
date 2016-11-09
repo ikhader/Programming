@@ -29,6 +29,16 @@ int get_num_of_bits_set(char a)
   }
   return cnt;
 }
+int cnt_number_of_bits_set(char a)
+{
+  int count = 0;
+  while(a)
+  {
+    a &= a-1;
+    count++;
+  }
+  return count;
+}
 
 int main(int argc, char *argv[])
 {
