@@ -118,9 +118,25 @@ Force HTTPS(HSTS-HTTPS Strcit Trasport Security): a server never listens on Http
 ---------------------------------------------------------------------------------------------------------------------------------
 
 ######################################################################
-my project details:
+VDA details
 ##################################################################
+Key exchange process:
+1. Server opens a socket & creates its own set of keys. Waiting for incomming connections
+2. Client intializes its own crypto graphic context: crypto_initialize
+3. Client gets public key & shares with server. pak type: CPubKey
+4. Server receives cilents pubilc key, stores it. Shares its own public key with the client. Pak type: SPubKey
+5. Client accepts servers public key, encrypts its secret key by using servers public key & shares its encrypted private key with server. Pak: CPriKey
+6. Server decrypts clients public key by using its private key and stores its
+7. Server encrypts its private key with clients public key & shares with client
+8. Client decrypts server private key by using its private key & store its.
+9. Data is encrypted by using other partys private key
 
+@ We used AES (Advanced Encryption Standard) in our project
+@ AES:
+   ! AES is symetric encryption method. Meaning same key is used to both encrypt & decrypt message
+   ! Two ways to encrypt & decrypt message under symetric encryption:
+       1. Stream Ciphers: Encrypts entire byte stream. We use this
+       2. Block ciphers: Takes number of bits & encrypts them as a single unit. Padding is applied
 
 ---------------------------------------------------
 Questions:
