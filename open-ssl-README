@@ -1,0 +1,128 @@
+Three things to do:
+
+1. private key generation: create a file with key
+cmd: openssl genrsa 1024 > mykey.demo.key 
+
+2. signging our own certificate
+cmd: openssl req -new -key ./mykey.demo.key  > mykey.demo.key.csr
+  series of questions asked either fill or just hit enter
+  1. Must add: Common Name (eg, your name or your server's hostname) []:bus277bsgs17.mmm.com <give your hostname>
+
+3. generate our own self signed certificate by our own CA (step -2) and our own key (step -1)
+ openssl x509 -in mykey.demo.key.csr -out mykey.demo.crt -req -signkey mykey.demo.key -days 365
+------------------------------------------------------------------------------------------
+Good to know:
+Working logic:
+  cryto libraries will generate hash (using MD5) of entier message & encrypt that by using other partys public key and send it across
+  later hacker were able to split MD5 message & public key and use it
+  MD5 hashing is replaced by SHA1 hashing mechanism
+  But curretnly google is forcing "NOT TO" use SHA1. Reason being hacker can break it down
+------------------------------------------------------------------------------------------
+
+
+Two types of enc:
+Nomenclature: Ek ==> function uses key (k) to encryty
+              Dk ==> function uses key (k) to decrypt
+              (p) ==> plain text
+              (c) ==> ciphered text
+ex: Ek(p) results c
+    Dk(c) results p
+Symetric enc: (Kerbors uses it): both encryption & decrytion are done by using same key
+ex: p = "hello world"
+    k = "this is the key"
+   Ek(p) results c
+   Dk(c) results p
+
+kerbros: Everything is built into one machine where a table called KDC is maintained
+KDC table
+---------------------------------
+|pricipal          | public key |              
+---------------------------------
+|.....             | ...........|
+EX: www.amazon.com | public key |
+---------------------------------
+@ as part of this table every server & client will have its key registered into this "BIG" machine
+@ if a client wants to talk server, client will reach out this "BIG" machine & asks KDC for server key & then comunnicates with this server
+@ this keys are used to enc/dec data
+@ this procedure works good with in a intr"a" net
+
+pitfalls:
+@. Single KDC server "MUST" be trusted by all 
+@. Key managment, meaning every client & server MUST have a key
+@. All users MUST be registerred
+@. Not scalable/performacne / avaliablility
+@. KDC has to be online
+---------------------------------------------------------------------------------------------------------------------------------
+
+Asymetir enc: this uses two keys, public & secret key. 
+              Sending party encrypts by using other partys public key. & receiving party uses its own secret key to decrypt/decypher
+              each party will shares its public key on wire
+ex: p = "hello world"
+    Pk = "public key"
+    Sk = "secret key"
+   Ek Pk(p)    results c
+   Dk Sk(c)    results p
+
+Asymetric enc also provides something called sign/verify messages. Works in the same faschion as above
+ex: p = "hello world"
+    Pk = "public key"
+    Sk = "secret key"
+    Sign Sk(p) = c 
+    Verify Pk(c, Sk) = true/false
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Nounce: This is random picked by server
+---------------------------------------------------------------------------------------------------------------------------------
+
+Certicate Authority (CA): 
+@ issues cetiricate for all the websites/server.
+@ also this CA will maintain KDC i.e. this will have principal & its associated publice key listed in its table
+Working:
+@ when ever a new browser installed/new machines browser is opned, this will come up all the CA servers public keys.
+@ when a browser connects to a HTTPS secured site, a client machine will get server public key from CA authority & encryptes its random number and sends across to the server. Server (having its own secret key) will be able to decode  
+@ client (web browsers) periodically gets new certificates from CAs or from manufacteres like google ships chrome with its bundle of trusted certificates. Everytime there is an update in chrome, they try to push new certificates/revoke the existing certs
+---------------------------------------------------------------------------------------------------------------------------------
+
+Two methods that were tried to publish new Certificates list:
+1. CRL (Certificate Revocation List..) Where all CAs publish new certs & all the browsers download certificates from here. Not used very widely
+   pitfalls: @ CA has maitain CRLs (same as KDC table in kerbros world)
+             @ CA has distruibute all certificates to all machines.. over loading issue
+             @ Server lost its PRIVATE key now data is vulanarable to attacks
+             @ Server can choose expiration from one day to NEVER. Again for certificates with "NEVER" expiration once private key stolen, big problems
+ 
+2. OCSP (Online Certificate Status Protocol): once certificate is downloaded then Browser will verify with "a server" to check its validation. Not used very widely
+   pitfalls: @ again every one hits this OCSP server to validate
+             @ latency too much
+             @ server goes down, single point of failure
+             @ (if server is down & certificate is revoked),browser cannont validate certificate it accepts as is and start sending data. Confidentiality is gone
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Brower/client has to mainly care about three aspects
+@. Data on network. (Much less to worry we can use any of the above discussed procedure to encrypt)
+   Ans: SSL/TLS openssl
+@. Code/Java script/cookies that are stored in browser must be protected from hackers & trusted only from trusted parties 
+   Ans: 1. New url schema "https"
+        2. Hostname in the URL has to be same as hostname in the certificate
+        3. (its reverse) Cookies will have a "secure flag" that will be send across https connections as well. Where as with "NO secure flag" cookies will be used on both HTTPS & HTTP connections
+@. User Interface, where/how does the user types in passwords
+        1. Check for lock icon, phishing site: can include lock icon as part of the url 
+---------------------------------------------------------------------------------------------------------------------------------
+
+Force HTTPS(HSTS-HTTPS Strcit Trasport Security): a server never listens on Http port or no connections are acccepted on port 80. Only Https(443) port is accepted
+  @ any certficate error is fatal. In this way user will never accept a fake certificatei, expired cert/hackers cannot put in their http site as proxy
+  @ browser will redirect all http connections by default to HTTPS sites
+  @ prohibits insecure embeding plan, where a http url is embeded with in https site
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+######################################################################
+my project details:
+##################################################################
+
+
+---------------------------------------------------
+Questions:
+1. What is RSA?
+2. How does enrytpion happen?
