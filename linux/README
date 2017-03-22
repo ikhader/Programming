@@ -15,4 +15,18 @@
 
 4. 
 
+================================================================
+================== profiling tools:=============================
+================================================================
+gprof notes
+
+create performance based ELF file:
+  generate object file:
+     g++  hello_world.cpp -c -g -pg==> will get hello_world.o
+  generate ELF file:
+    g++ hello_world.o -g -pg -o hello
+  execute it:
+    ./hello
+  get performance statistics:
+    gprof hello
 
