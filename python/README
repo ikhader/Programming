@@ -20,9 +20,42 @@ Lists:
 Tupples: a sequence of immutable python objects
   t = (1, 2, 3)
 
+dictonary/Hash:
+  h = {'a' : 1,'b' : 2,'c' : 3,'d' : 4,'e' : {"hello" : "world"} }
 
+Hash to Json:
+import json json.dumps(h)
 
-dictonary: 
+Mutable/Immutable:
+read file mutable_immutable.py + class.py
+example: s = "hello" #string
+         s[0] = 'H' ==> gives error
+         l = [1, 2, 3] #list
+         l[0] = 20 ==> no issues
+
+immutable: you cannot change values after assinging
+    types: strings, tuple
+
+mutable: values can be changed even after assinging
+   types: list, dictonary
+
+Good to know:
+@ list of all fucntions for a class: dir
+   ex: print dir(dict)
+@ try.. except.. finally
+  ex: handle = None
+  try: 
+    handle = open file 
+    blah blah
+  except file.Error, e:
+    print error message
+  finally:
+    handle.close()
+    print all iss well
+@ intializing a varaible to null/nil
+  h = None
+@ First class functions are like funciton pointers
+
 
 
 
@@ -37,5 +70,4 @@ schema of tables: .schema
 
 ==to close connection
 .quit 
-
 
