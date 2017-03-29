@@ -1,29 +1,15 @@
-
-
 #
 #In a nested funcs using local varaibles of topmost func in inner funcs
 #
-
-print "Hello World!\n"
-class Employee:
-  def __init__ (self, first, last):
-    self.first = first
-    self.last = last
-    #self.email = first + '.' + last +'@email.com'
-  
-  #clousures
-  @property
-  def email(self):
-    return "{}.{}@email.com".format(self.first, self.last)
-  def fullname(self):
-    return "{} {}".format(self.first, self.last)
-
-e1 = Employee("John", "simith")
-print e1.fullname()
-#email was supposed to be a vairable but changed to method later..
-#earlier usage of people used "email" as a varaible. Method to prefixed "property"will act as a varaible
-print e1.email
-
+# Common things in closure & decorators:
+#  @ both have nested functions
+#  @ both retunrs inner most functions
+#
+#decorators takes a function (as a funciton argument) and add soem "decoration" then return it
+# decorating functions/outermost function, accecpts function pointer(first class function) as an argument
+# This first class function will be used in inner functions and invoked from this inner function
+#But in closures, both innner & outer functinos will have same argument list(strings as example)
+# Then this inner function will use that outermost func arguments(strings as example)
 
 def print_msg(m):
   def log():
@@ -40,3 +26,5 @@ def print_msg_1(m):
 
 t = print_msg_1("test message - 2")
 t()
+~
+~
