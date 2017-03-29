@@ -59,7 +59,7 @@ Good to know:
 @ pyinstaller is used to generate an installer file
 @ pip install pyinstaller
 @ pip install --upgrade pyinstaller
-
+@ to debug: python -m pdb hello_world.py
 Database details:
 open data base: sqlite3 test.db
 view tables: .tables;
