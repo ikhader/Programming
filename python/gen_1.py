@@ -1,5 +1,6 @@
 
 #generators are nothing but 'yeild'
+#Generators functions allow you to declare a function that behaves like an iterator, i.e. it can be used in a for loop.
 # this will help in memory, stack will not grow if squares to be caluclated 100000 numbers
 
 def square(n):
