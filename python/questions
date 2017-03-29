@@ -1,0 +1,54 @@
+python:
+@ generators?
+  Mostly used with yeild, helps stack size not growing dynamically
+@ closures?
+  its a function objec that remebers variables of outer most function. This is applicabel only to nested functions logic
+@ first class functions?
+  Function pointers
+@ decorators?
+  used to beatufi the code
+@ mutable & immutable?
+  mutable: objects that can be changed(base address will never change) list, dictonary ex: l = [1,2,3]; l[0] = 20
+  immutable: objects that canNOT be chagned. Ex: string; s="hello" s[0] = 'H' ==> error
+@ static variables in a class 
+  varaibles are static variables. These are defined under class name. Ex: class c: static_var = "test string"
+@ variables shared across all instances in class?
+  variabels that are mutable. Ex: class c : l = [1,2,3]
+  if any instance appends/chagnes value of 'c' that will be refelected in another instance as well
+@ what is @classmethod; @staticmethod; @property?
+  A: these are decorators. 
+@ dictonary?
+  hash maps
+@ list?
+@ strings?
+@ tupples
+@ is file or directory?
+    import os os.path.isdir(path)
+@ does file path exist?
+    import os os.path.exists(path)
+@ get todays date/calendar?
+    import datetime  datetime.datetime.now().time()
+	strftime exists.. same as ruby
+@ how to have variable aruguments for a function?
+  use: f(*args, **kwargs)
+@ threads in python? good to use or not?
+   threads are not good in python. Meaning python does NOT do parllel execution.
+   Python has a concept of GIL(Global Interprter Lock) a thread acquires it executes a piece of code and releases.
+   No two threads can enter GIL at the same time. So threads are not of big use in python. 
+   On the contrary, Python has threading package to run things simulataneoulsy and efficency in not of concern.
+   Ex: A thread waiting for I/O to happen and then take action.
+@ what is 'with'?
+  @ this will help close all the opened handles in any way of exit(break, return, exeception, exit)
+  ex: with open("abc.txt", 'wb') as f: 
+        f.write("hello world!!!")
+	  after with block file handle will be automatically closed
+       
+@ try.. except.. finally??
+@ get all member fucntions in a class?
+  ans: use 'dir' to get all functions
+@ run time polymorphism?
+@ profling of your code?
+  A: import cProfile.. cProfile.run('function(arguments)')
+@ what is "isinstance?"
+  A: used to determin if a object belongs to a class or not
+  Ex: isinstance(object, class)
