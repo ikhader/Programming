@@ -56,8 +56,9 @@ Good to know:
   h = None
 @ First class functions are like funciton pointers
 @ if __name__ == 'main' ==> start executing
-
-
+@ pyinstaller is used to generate an installer file
+@ pip install pyinstaller
+@ pip install --upgrade pyinstaller
 
 Database details:
 open data base: sqlite3 test.db
