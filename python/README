@@ -52,6 +52,18 @@ Good to know:
   finally:
     handle.close()
     print all iss well
+  try: 
+    blah blah blah
+  except file.Error:
+     blah blah
+   except IO.Error:
+     blah blah
+   else:
+     blah blah #if not exceptions raised then this code will be executed
+   
+   try: blah blah
+   except: blah blah
+   finally: blah blah
 @ intializing a varaible to null/nil
   h = None
 @ First class functions are like funciton pointers
