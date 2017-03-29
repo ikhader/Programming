@@ -60,6 +60,9 @@ Good to know:
 @ pip install pyinstaller
 @ pip install --upgrade pyinstaller
 @ to debug: python -m pdb hello_world.py
+@ __init__.py file makes python to think this directory is a module. 
+
+
 Database details:
 open data base: sqlite3 test.db
 view tables: .tables;
