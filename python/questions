@@ -18,10 +18,36 @@ python:
 @ what is @classmethod; @staticmethod; @property?
   A: these are decorators. 
 @ dictonary?
-  hash maps
+  hash maps; m = {}
+  get only keys: print m.keys()
+  get only values: print m.values()
+  tuple to string: tuple(s)
+  list to string: list(s)
 @ list?
+  l = ['a', 'b', 'c']
+  a in l ==> returns true
+  compare two lists: cmp(list1, list2)
+  l.insert(1,'Q') #['a','Q','b','c']
+  reverse: list.reverse()
 @ strings?
+  s = "hello world"
+  s = "100", k = "100.234"
+  string to integer: i = int(s)
+  string to float: f = float(k)
+  object to string: str(i)
+  string to an object: eval(s)
+  string with alphanumeric: isalnum(s)
+  string with digit: isdigit(s)
 @ tupples
+  tupples are readonly list
+  t = ()
+@ set: mutable data types. Does NOT support indexing. 
+   ex: for x in s: print x
+       3 in s ==> True/False
+       s.add()
+       s.remove()
+       s = set("Hello world")
+       
 @ is file or directory?
     import os os.path.isdir(path)
 @ does file path exist?
