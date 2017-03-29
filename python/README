@@ -55,7 +55,7 @@ Good to know:
 @ intializing a varaible to null/nil
   h = None
 @ First class functions are like funciton pointers
-
+@ if __name__ == 'main' ==> start executing
 
 
 
