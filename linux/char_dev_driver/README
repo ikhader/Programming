@@ -1,0 +1,37 @@
+Run 
+@ Make: You should see .ko file
+
+insmod: insmod char_device_driver.ko(Must be root user)
+to check if installed:
+@ lsmod | grep char_device
+@ cat /proc/devices | grep char_dev <you should this with number - 77>
+
+Notes:
+/dev is the filesystem that is in RAM. Destroys after at reboot
+cat /proc/devices ==> Gives all the drivers taht are loaded in the system
+device drivers:
+@ charcter device drivers: stream of bytes. Real time data. Ex: Key board, mouse. We dont access to go back & forth
+  ls -l /dev/ | head
+  crw-------. 1 root root     						10, 			235 Mar 23 20:46 autofs
+  |           |                						|				 |
+  |           |                						|				 |
+  V           File type/2 directory 				Major Number     Minor number
+  Charcter device driver
+  # Linux assosicates every device with a file in /dev folder
+  # Linux identifies each device driver with its major number(10 in our case) 
+  # Minor number is number of instances of this device(235 in our example)
+  
+@ block device driver: you can mount a file system. Example usb stick, CD ROM. File access can be done back & forth(Ex: movie skipping few scenes).
+  ls -l /dev/ | grep sda
+  brw-rw----. 1 root disk      8,   		0 Mar 23 20:46 sda
+  brw-rw----. 1 root disk      8,   		1 Mar 23 20:46 sda1
+  brw-rw----. 1 root disk      8,   		2 Mar 23 20:46 sda2
+  |							   |			|
+  |							   |			|
+  V							   V			V
+  Block driver				Major driver   Minor num/showing partition number
+  # Linux assosicates every device with a file in /dev folder
+  # Linux identifies each device driver with its major number(8 in this case) 
+  # Minor number harddisk partition(0,1,2 in our example)
+
+
