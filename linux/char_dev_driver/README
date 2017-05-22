@@ -6,6 +6,10 @@ to check if installed:
 @ lsmod | grep char_device
 @ cat /proc/devices 
   expected:  77 Hello World
+Testing:
+(as root user)  mknod -m 666 /dev/simple_char_device c 77 0
+ls -l /dev/simple_char_device
+crw-rw-rw-. 1 root root 77, 0 May 22 17:28 /dev/simple_char_device
 
 Notes:
 /dev is the filesystem that is in RAM. Destroys after at reboot
