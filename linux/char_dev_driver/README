@@ -4,7 +4,8 @@ Run
 insmod: insmod char_device_driver.ko(Must be root user)
 to check if installed:
 @ lsmod | grep char_device
-@ cat /proc/devices | grep char_dev <you should this with number - 77>
+@ cat /proc/devices 
+  expected:  77 Hello World
 
 Notes:
 /dev is the filesystem that is in RAM. Destroys after at reboot
