@@ -17,11 +17,12 @@ cat /proc/devices ==> Gives all the drivers taht are loaded in the system
 device drivers:
 @ charcter device drivers: stream of bytes. Real time data. Ex: Key board, mouse. We dont access to go back & forth
   ls -l /dev/ | head
-  crw-------. 1 root root     						10, 			235 Mar 23 20:46 autofs
+  crw-------. 1 root root     						10,     235 Mar 23 20:46 autofs
   |           |                						|				 |
   |           |                						|				 |
-  V           File type/2 directory 				Major Number     Minor number
+  V           File type/2 directory    Major#    Minor#
   Charcter device driver
+  
   # Linux assosicates every device with a file in /dev folder
   # Linux identifies each device driver with its major number(10 in our case) 
   # Minor number is number of instances of this device(235 in our example)
