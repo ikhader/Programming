@@ -1,0 +1,8 @@
+to setup google test on mac book refer to this manual: http://hack.limbicmedia.ca/installing-google-test/
+there could be permissions issues around /usr/local/bin/ & /usr/local/share try to chwown command to solve this problem
+once setup is done you should be able to run test without any issues
+to compile my_ex try this command
+  g++ -std=c++11 -stdlib=libc++ unit_test.cc math.cc main.cc -lgtest -lpthread -o mat_1
+after linker is done; you should see mat_1 ELF file in your folder
+run it!!!!
+
