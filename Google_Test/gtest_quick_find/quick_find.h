@@ -14,7 +14,7 @@ class quick_find
     ~quick_find();
     bool is_connected(int p, int q);
     void print_array();
-    void connect_nodes(int p, int q);
+    bool connect_nodes(int p, int q);
     int get_size();
   
 };

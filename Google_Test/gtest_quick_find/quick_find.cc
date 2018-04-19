@@ -8,8 +8,11 @@ v1 = get value at uf_array[q];
 v2 = get value at uf_array[p]
 run through the array and update all values of v2 with v1
 */
-void quick_find::connect_nodes(int p, int q)
+bool quick_find::connect_nodes(int p, int q)
 {
+  if( p >= uf_array->size() || q >= uf_array->size())
+    return false;
+
   int v1 = uf_array->operator[](p);
   int v2 = uf_array->operator[](q);
 
@@ -20,6 +23,7 @@ void quick_find::connect_nodes(int p, int q)
       uf_array->at(i) = v1; 
     }   
   }
+  return true;
 }
 
 
@@ -28,13 +32,13 @@ quick_find::quick_find(int max_ele)
   //uf_array = new std::vector<int>(max_ele);
   uf_array = new std::vector<int>;
 
-  cout <<"sizeof vector: "<<uf_array->size()<< endl;
+  //cout <<"sizeof vector: "<<uf_array->size()<< endl;
 
   for(int i = 0; i < max_ele; i++)
   {
     uf_array->push_back(i);
   }
-  print_array();
+  //print_array();
 }
 
 bool quick_find::is_connected(int p, int q)
@@ -44,7 +48,7 @@ bool quick_find::is_connected(int p, int q)
 
 void quick_find::print_array()
 {
-  cout <<"array is size:"<< uf_array->size() << endl;
+  //cout <<"array is size:"<< uf_array->size() << endl;
   for(std::vector<int>::iterator it =  uf_array->begin(); it != uf_array->end(); it++)
     cout<<*it << " ";
   cout <<endl;
