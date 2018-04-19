@@ -38,7 +38,7 @@ char *readable_reverse(char *s)
   if (NULL == s)
     return NULL;
   
-  cout << "readable_reverse @ 1: " << s<<endl;
+  //cout << "readable_reverse @ 1: " << s<<endl;
   int l = xstrlen(s);
    
   xstrrev(s, l);
@@ -65,10 +65,39 @@ char *readable_reverse(char *s)
     //cout << "readable_reverse @ 4: " << s<<endl;
   }
 
-  cout << "readable_reverse @ 5: " << s<<endl;
+  //cout << "readable_reverse @ 5: " << s<<endl;
   return s;
 }
+ 
+/*
+checks if s2 is rotated form of s1 or not
+ex: s1 = abcd s2 cdab -- true
+    s1 = abcdefg s2 cdefgab -- true
+    s1 = abcd s2 dcba -- false
+Algo: concatenate s1 to itself; then look for s2 in it
+*/ 
+bool is_string_rotated(char *s1, char *s2)
+{
+  if(NULL == s1 || NULL == s2)
+    return false;
+
+  if(xstrlen(s1) != xstrlen(s2))
+    return false;
+
+  char *tmp_s1 = (char*)malloc(xstrlen(s1)*2 + 1);
+  if(NULL == tmp_s1)
+    return false;
+
+  memset(tmp_s1, 0x00, xstrlen(s1)*2 + 1);
+  strcpy(tmp_s1, s1);
+  strcat(tmp_s1, s1);
   
+  bool is_rotated = !(strstr(tmp_s1, s2) == NULL);
+
+  free(tmp_s1);
+
+  return is_rotated;
+}
 
 int main_(int argc, char *argv[])
 {

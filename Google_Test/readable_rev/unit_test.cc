@@ -49,6 +49,29 @@ TEST(readable_reverse, special_chars)
   char *r1 = readable_reverse(s1);
   EXPECT_STREQ("test\ttab", r1);
 }
+TEST(is_string_rotated, str_rotation_test)
+{
+  char s1[] = "HELLO";
+  char s2[] = "ELLOH";
+  EXPECT_TRUE(is_string_rotated(s1, s2));
+
+  char s3[] = "ELLOHE";
+  EXPECT_FALSE(is_string_rotated(s1, s3));
+
+  char s4[] = "HELLOWorld";
+  char s5[] = "WorldHELLO";
+  EXPECT_TRUE(is_string_rotated(s4, s5));
+
+  char s6[] = "HELLO World";
+  char s7[] = " WorldHELLO";
+  char s8[] = "WorldHELLO ";
+  EXPECT_TRUE(is_string_rotated(s6, s7));
+  EXPECT_TRUE(is_string_rotated(s6, s8));
+
+  char s9[] = "WorldHELLO ";
+  char s10[] = " WorldHELLO";
+  EXPECT_TRUE(is_string_rotated(s9, s8));
+}
 
 }
 
