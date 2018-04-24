@@ -232,7 +232,37 @@ void btree_get_level_order(stnode *h, vector<int> &res, char sep)
   free(tnode);
 }
 
+void btree_get_right_view(stnode *h, vector<int> &res)
+{
+  vector<int> level_order;
+  btree_get_level_order(h, level_order, SEPERATOR);
+  
+  for (int i = 0; i < level_order.size(); i++)
+  {
+    if(level_order[i] == SEPERATOR)
+    {
+      res.push_back(level_order[i-1]);
+      cout <<"RIGHT Pushing back: " << res[i-1] <<endl;
 
+    }
+  }
+}
+
+void btree_get_left_view(stnode *h, vector<int> &res)
+{
+  vector<int> level_order;
+  btree_get_level_order(h, level_order);
+
+  res.push_back(level_order[0]);
+  for (int i = 1; i < level_order.size(); i++)
+  {
+    if(level_order[i] == SEPERATOR && i+1 < level_order.size())
+    {
+      res.push_back(level_order[i+1]);
+      cout <<"LEFT Pushing back: " << res[i+1] <<endl;
+    }
+  }
+}
 int btree_get_max(stnode *h)
 {
   return 0;

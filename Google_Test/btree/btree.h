@@ -5,6 +5,7 @@
 
 #define SEPERATOR '|'
 
+using namespace std;
 typedef struct _stnode
 {
   _stnode *l;
@@ -27,7 +28,9 @@ stnode *btree_create_dummy_list3();
 void btree_get_pre_order(stnode *h,std::vector<int> &res);
 void btree_get_in_order(stnode *h, std::vector<int> &res);
 void btree_get_in_order(stnode *h, std::vector<int> &res);
-void btree_get_level_order(stnode *h, std::vector<int> &res, char sep);
+void btree_get_level_order(stnode *h, std::vector<int> &res, char sep = SEPERATOR);
+void btree_get_right_view(stnode *h, vector<int> &res);
+void btree_get_left_view(stnode *h, vector<int> &res);
 #endif // __BTREE__
 
 

@@ -70,6 +70,19 @@ TEST(btree_pre_order, pre_order_testing)
   }
   v.clear();
 
+
+  int array_l1_left_view[] = {50, 30, 15};
+  btree_get_left_view(t, v);
+  for(int idx = 0; idx < v.size(); idx++)
+    EXPECT_EQ(array_l1_left_view[idx], v[idx]);
+  v.clear();
+
+  int array_l1_right_view[] = {50, 80, 90};
+  btree_get_right_view(t, v);
+  for(int idx = 0; idx < v.size(); idx++)
+    EXPECT_EQ(array_l1_right_view[idx], v[idx]);
+  v.clear();
+
   btree_delete_tree(t);
  //////////////////////////////////////////////////////////////////////////////
  ///////////////////for list l3 more complicated///////////////////////////////
