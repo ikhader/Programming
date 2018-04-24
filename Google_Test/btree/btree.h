@@ -22,6 +22,7 @@ int btree_get_sum_of_all_nodes(stnode *h);
 
 stnode *btree_create_dummy_list2();
 stnode *btree_create_dummy_list1();
+stnode *btree_create_dummy_list3();
 
 void btree_get_pre_order(stnode *h,std::vector<int> &res);
 void btree_get_in_order(stnode *h, std::vector<int> &res);

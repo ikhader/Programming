@@ -71,5 +71,21 @@ TEST(btree_pre_order, pre_order_testing)
   v.clear();
 
   btree_delete_tree(t);
+ //////////////////////////////////////////////////////////////////////////////
+ ///////////////////for list l3 more complicated///////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////
+
+  t = btree_create_dummy_list3();
+  int array_l3_level_order[] = {100, SEPERATOR, 200, -200, SEPERATOR, -5, -4, -3, -2, SEPERATOR, -401, -402, -202, SEPERATOR};
+  btree_get_level_order(t, v, SEPERATOR);
+  for(int idx = 0; idx < v.size(); idx++)
+  {
+    EXPECT_EQ(array_l3_level_order[idx], v[idx]);
+#ifdef __debug__
+    cout<<"array [" << array_l1_level_order[idx] << "] fun_ret[" << v[idx] << "]" <<endl;
+#endif //__debug__
+  }
+  v.clear();
+  
 }
 }

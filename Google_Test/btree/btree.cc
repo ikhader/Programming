@@ -10,6 +10,37 @@
 using namespace std;
 
 /*
+      100   
+     /    \   
+    200   -200  
+   / \   /  \
+  -5 -4 -3  -2 
+    /  \      \
+  -401 -402    -202
+              
+
+*/
+stnode *btree_create_dummy_list3()
+{
+  stnode *t = btree_create_node(100);
+
+  t->l = btree_create_node(200);
+  t->r = btree_create_node(-200);
+
+  t->l->l = btree_create_node(-5);
+  t->l->r = btree_create_node(-4);
+
+  t->r->l = btree_create_node(-3);
+  t->r->r = btree_create_node(-2);
+  
+  t->l->r->l = btree_create_node(-401);
+  t->l->r->r = btree_create_node(-402);
+
+  t->r->r->r = btree_create_node(-202);
+  return t;
+}
+
+/*
        0
      /    \
     1     -1
