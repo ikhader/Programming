@@ -26,6 +26,16 @@ int main(int argc, char *argv[])
   
   printf("\t to see all preposser; assembly & ELF files with one command \n");
   printf("\t\t gcc -save-temps <file_name.c>\n");
+  
+  printf("GOOD TO KNOW MORE OPTIONS \n");
+  printf("gcc -Wall <file_name.c> shows all warnings \n");
+  printf("gcc -l <shared_object_file name> <file_name.c> links <shared_object_filename> with <file_name> elf \n");
+  
+  printf("To define (__DEBUG__) macro during compile time \n");
+  printf("gcc -D__DEBUG__ <file_name.c> \n");
+  
+  printf("To treat warnings as errors use -Werror option \n");
+  printf("gcc -Werror <file_name.c> \n");  
 }
 
 
