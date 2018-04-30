@@ -21,10 +21,11 @@ int main(int argc, char *argv[])
   printf("\t Linker:  \n");
   printf("\t\t gcc -c <file_name.c> \n");
 
-
-
   printf("\t Loader:  \n");
   printf("\t\t gcc -o file_name  <file_name.c> \n");
+  
+  printf("\t to see all preposser; assembly & ELF files with one command \n");
+  printf("\t\t gcc -save-temps <file_name.c>\n");
 }
 
 
