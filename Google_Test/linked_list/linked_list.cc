@@ -112,27 +112,24 @@ bool delete_node_at_index(stNode **h, int index)
 
 bool reverse_list(stNode **h)
 {
-  if(NULL == *h)
-    return false;
+  stNode *prev, *next, *current;
+  
+  prev = next = NULL;
+  current = *h;
 
-  stNode *t1, *t2, *t3;
-  t1 = *h;
-  t2 = t1->n;
-  t1->n = NULL;
-  t3 = t2->n;
-  while(t1->n)
+  while(current)
   {
-    t2->n = t1;
-    t1 = t2;
-    t2 = t3;
-    if(NULL != t3)
-      t3 = t3->n;
+    next = current->n;
+    current->n = prev;
+    prev = current;
+    current = next;
   }
-  *h = t1;
+  *h = prev;
   return true;
+  
 }
 
-int main(int argc, char *argv[])
+int main_(int argc, char *argv[])
 {
   int a[] = {10, 20, 30, 40, 50};
   int i = 0;
@@ -143,6 +140,22 @@ int main(int argc, char *argv[])
   {
     add_node(&h, a[i]);
   }
+  printf("List before reverse: \n");
+  v.clear();
+  get_node_details(h, v);
+  for(i = 0; i <v.size(); i++)
+  {
+    printf("v[%d] = %d \n" , i, v[i]);
+  } 
   reverse_list(&h);
+  
+  printf("List after reverse: \n");
+  v.clear();
+  get_node_details(h, v);
+  for(i = 0; i <v.size(); i++)
+  {
+    printf("v[%d] = %d \n" , i, v[i]);
+  } 
+  return 0;
   
 }
