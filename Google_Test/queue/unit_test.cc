@@ -12,9 +12,11 @@ TEST(queue_testing, testing_funcs_of_queue) {
   int i;
   for(i = 0; i < sizeof(a)/sizeof(a[0]); i++)
   {
-    q->EnQ(a[i]);
+    EXPECT_TRUE(q->EnQ(a[i]));
   }
   
+  EXPECT_FALSE(q->EnQ(110));
+
   vector<int> v;
   q->get_q(v);
   for(i = 0; i < sizeof(a)/sizeof(a[0]); i++)
