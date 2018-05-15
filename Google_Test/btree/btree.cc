@@ -232,6 +232,41 @@ void btree_get_level_order(stnode *h, vector<int> &res, char sep)
   free(tnode);
 }
 
+
+void btree_get_level_order(stnode *h, vector<stnode *> &res, stnode *sep)
+{
+  if( NULL == h)
+    return ;
+  queue<stnode*> Q;
+
+  //res.push_back(h);
+  //res.push_back(sep);
+
+  Q.push(h);
+  Q.push(sep);
+
+  while(Q.size() != 0)
+  {
+    stnode *f = Q.front();
+    Q.pop();
+
+    while(f != sep)
+    {
+      res.push_back(f);
+      if(f->l) Q.push(f->l);
+      if(f->r) Q.push(f->r);
+      f = Q.front();
+      Q.pop();
+    }
+
+    res.push_back(sep);
+    if(Q.size() != 0)
+      Q.push(sep);
+    
+  }
+  
+}
+
 void btree_get_right_view(stnode *h, vector<int> &res)
 {
   vector<int> level_order;
@@ -248,6 +283,7 @@ void btree_get_right_view(stnode *h, vector<int> &res)
   }
 }
 
+
 void btree_get_left_view(stnode *h, vector<int> &res)
 {
   vector<int> level_order;
@@ -259,7 +295,7 @@ void btree_get_left_view(stnode *h, vector<int> &res)
     if(level_order[i] == SEPERATOR && i+1 < level_order.size())
     {
       res.push_back(level_order[i+1]);
-      cout <<"LEFT Pushing back: " << res[i+1] <<endl;
+      //cout <<"LEFT Pushing back: " << res[i+1] <<endl;
     }
   }
 }
@@ -273,3 +309,26 @@ int btree_get_min(stnode *h)
   return 0;
 }
 
+void btree_get_parent_child_map(stnode *h, stnode *parent, map<stnode *, stnode*> &parent_child_map)
+{
+  if( NULL == h)
+    return;
+
+  parent_child_map[h] = parent;
+  btree_get_parent_child_map(h->l, h, parent_child_map);
+  btree_get_parent_child_map(h->r, h, parent_child_map);
+}
+
+
+void btree_get_only_leaf_nodes(stnode *h, vector<stnode*>&v)
+{
+  if(NULL == h)
+    return;
+
+  if(h->r == NULL && h->l == NULL)
+    v.push_back(h);
+
+ btree_get_only_leaf_nodes(h->l, v);
+ btree_get_only_leaf_nodes(h->r, v);
+
+}

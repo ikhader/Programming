@@ -99,6 +99,70 @@ TEST(btree_pre_order, pre_order_testing)
 #endif //__debug__
   }
   v.clear();
+
+  vector<stnode *> node_vector;
+  btree_get_only_leaf_nodes(t, node_vector);
   
+  EXPECT_EQ(node_vector.size(), 5);
+
+  EXPECT_EQ(node_vector[0], t->l->l);
+  EXPECT_EQ(node_vector[1], t->l->r->l);
+  EXPECT_EQ(node_vector[2], t->l->r->r);
+
+  EXPECT_EQ(node_vector[3], t->r->l);
+  EXPECT_EQ(node_vector[4], t->r->r->r);
+
+  btree_delete_tree(t);
+}
+
+TEST(btree_parent_child, parent_child_map)
+{
+  stnode * h = btree_create_dummy_list1();
+  map<stnode *, stnode*> pc_map;
+  
+  btree_get_parent_child_map(h, NULL, pc_map);
+
+  EXPECT_TRUE(pc_map[h] ==  NULL);
+
+  EXPECT_TRUE(pc_map[h->l] ==  h);
+  EXPECT_TRUE(pc_map[h->r] ==  h);
+  
+  EXPECT_TRUE(pc_map[h->l->r] ==  h->l);
+  EXPECT_TRUE(pc_map[h->l->l] ==  h->l);
+  
+  EXPECT_TRUE(pc_map[h->r->r] ==  h->r);
+  EXPECT_TRUE(pc_map[h->r->l] ==  h->r);
+
+  pc_map.clear();
+
+  //check for level order with stnode as reference
+  vector<stnode*> v;
+  stnode *sep = btree_create_node(SEPERATOR);
+  btree_get_level_order(h, v, sep);
+  
+  EXPECT_TRUE(v[1] == sep);
+  EXPECT_EQ(v[4], sep);
+  EXPECT_EQ(v[9], sep);
+
+  EXPECT_EQ(v[8], h->r->r);
+  EXPECT_EQ(v[7], h->r->l);
+  EXPECT_EQ(v[6], h->l->r);
+  EXPECT_EQ(v[5], h->l->l);
+  
+  EXPECT_EQ(v[2], h->l);
+  EXPECT_EQ(v[3], h->r);
+
+  v.clear();
+  btree_get_only_leaf_nodes(h, v);
+
+  EXPECT_EQ(v.size(), 4);
+  EXPECT_EQ(v[3], h->r->r);
+  EXPECT_EQ(v[2], h->r->l);
+  EXPECT_EQ(v[1], h->l->r);
+  EXPECT_EQ(v[0], h->l->l);
+  
+
+  btree_delete_tree(h);
+  btree_delete_tree(sep);
 }
 }

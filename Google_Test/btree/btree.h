@@ -2,6 +2,7 @@
 #define __BTREE__
 #include <iostream>
 #include <vector>
+#include <map>
 
 #define SEPERATOR '|'
 
@@ -29,8 +30,11 @@ void btree_get_pre_order(stnode *h,std::vector<int> &res);
 void btree_get_in_order(stnode *h, std::vector<int> &res);
 void btree_get_in_order(stnode *h, std::vector<int> &res);
 void btree_get_level_order(stnode *h, std::vector<int> &res, char sep = SEPERATOR);
+void btree_get_level_order(stnode *h, vector<stnode *> &res, stnode *sep);
 void btree_get_right_view(stnode *h, vector<int> &res);
 void btree_get_left_view(stnode *h, vector<int> &res);
+void btree_get_parent_child_map(stnode *h, stnode *parent, map<stnode *, stnode*> &parent_child_map);
+void btree_get_only_leaf_nodes(stnode *h, vector<stnode*>&v);
 #endif // __BTREE__
 
 
