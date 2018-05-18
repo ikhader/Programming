@@ -59,5 +59,20 @@ TEST(even_odd_seperation, Negative) {
     EXPECT_EQ(a_3_result[i], a_3[i]);
   }
 }
+TEST(get_max_sum_path, Negative) 
+{
+  int a_1[] = {1, 2, 3, -4, 5, 123, 125};
+  int start , end;
+  start = end = 0;
+  get_max_sum_path(a_1, sizeof(a_1)/sizeof(a_1[0]), &start, &end);
+  EXPECT_EQ(start, 4);
+  EXPECT_EQ(end, 6);
+
+  int a_2[] = {1, 2, 3, -4, 5, 123, -125};
+  start = end = 0;
+  get_max_sum_path(a_2, sizeof(a_2)/sizeof(a_2[0]), &start, &end);
+  EXPECT_EQ(start, 4);
+  EXPECT_EQ(end, 5);
+}
 }
 

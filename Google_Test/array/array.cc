@@ -1,9 +1,11 @@
 
 
+#include <iostream>
 
 
 #include "array.h"
 
+using namespace std;
 /*
 roates matrix in cyclic order
 a[] = {1,2,3,4,5}
@@ -55,4 +57,35 @@ void even_odd_sepeartion(int a[], int array_size)
     }
   }
   return;
+}
+
+void get_max_sum_path(int a[], int array_size, int *s, int *e)
+{
+  int sum, tsum;
+  int start, end;
+  int i, j;
+
+  start = end = sum = tsum = 0;
+  for(i = 0; i < array_size; i++)
+  {
+    tsum = a[i];
+    for(j = i + 1; j < array_size; j++)
+    {
+      if(tsum + a[j] > sum)
+      {
+        sum = tsum + a[j];
+        start = i;
+        end = j;
+        tsum = sum;
+        //cout<<"Sum: "<< sum << " start: " << start << " end: " << end << endl;
+      }
+      if(tsum + a[j] < sum)
+      {
+        j = array_size;
+      }
+    }
+  }
+  *s = start;
+  *e = end;
+  return ;
 }
