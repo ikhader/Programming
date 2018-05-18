@@ -73,6 +73,18 @@ TEST(get_max_sum_path, Negative)
   get_max_sum_path(a_2, sizeof(a_2)/sizeof(a_2[0]), &start, &end);
   EXPECT_EQ(start, 4);
   EXPECT_EQ(end, 5);
+
+  int a_3[] = {1, 2, 3, -4, 5, -123, 225};
+  start = end = 0;
+  get_max_sum_path(a_3, sizeof(a_3)/sizeof(a_3[0]), &start, &end);
+  EXPECT_EQ(start, 6);
+  EXPECT_EQ(end, 6);
+
+  int a_4[] = {1000, -2, 3, -4, 5, -123, 225};
+  start = end = 0;
+  get_max_sum_path(a_4, sizeof(a_4)/sizeof(a_4[0]), &start, &end);
+  EXPECT_EQ(start, 0);
+  EXPECT_EQ(end, 0);
 }
 }
 

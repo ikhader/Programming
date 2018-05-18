@@ -65,7 +65,8 @@ void get_max_sum_path(int a[], int array_size, int *s, int *e)
   int start, end;
   int i, j;
 
-  start = end = sum = tsum = 0;
+  start = end = tsum = 0;
+  sum = a[0];
   for(i = 0; i < array_size; i++)
   {
     tsum = a[i];
@@ -77,7 +78,7 @@ void get_max_sum_path(int a[], int array_size, int *s, int *e)
         start = i;
         end = j;
         tsum = sum;
-        //cout<<"Sum: "<< sum << " start: " << start << " end: " << end << endl;
+        cout<<"Sum: "<< sum << " start: " << start << " end: " << end << endl;
       }
       if(tsum + a[j] < sum)
       {
@@ -85,6 +86,9 @@ void get_max_sum_path(int a[], int array_size, int *s, int *e)
       }
     }
   }
+  cout <<"----------------------------------------------------------" <<endl;
+  if (sum < a[array_size-1])
+    start = end = array_size-1;
   *s = start;
   *e = end;
   return ;
