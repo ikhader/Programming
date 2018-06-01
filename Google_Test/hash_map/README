@@ -1,0 +1,7 @@
+
+Implementation is spread across two folders...
+1. linked_list: this is one level back in directory level
+2. To compils
+  g++ -std=c++11 -stdlib=libc++ unit_test.cc hash_map.cc ../linked_list/linked_list.cc  main.cc -lgtest -lpthread -o hash
+
+
