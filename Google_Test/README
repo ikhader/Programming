@@ -6,3 +6,5 @@ to compile my_ex try this command
 after linker is done; you should see mat_1 ELF file in your folder
 run it!!!!
 
+To setup Google test on linux box:
+https://lchsk.com/how-to-set-up-googletest-library-from-source.html
