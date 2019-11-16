@@ -1,0 +1,21 @@
+To create an app called flutter_course:
+flutter  create flutter_course
+
+To open iPhone simulatore:
+open -a Simulator
+
+to open Andriod simulator:
+
+make a connection from flutter app to Simulator :
+SEA-ML-00027338:flutter_course palagiri$ pwd
+/Users/palagiri/Documents/projects/flutter_course
+SEA-ML-00027338:flutter_course palagiri$ flutter run
+
+Make changes in the source code & on the terminal just hit "r" to refresh or "R" reload
+
+Dart notes:
+funcitons with one liner function defintions like:
+void print_hello(){
+    print("hello world");
+}
+cane be changed to void print_hello() => print("hello world");

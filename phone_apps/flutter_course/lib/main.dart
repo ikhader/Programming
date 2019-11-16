@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
-main() {
+//Must NOT return anything
+void main() 
+{
   runApp(MyApp());
 
 }
 //Alt + shift + f --> formatting 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget 
+{
   //when we pass object on to flatter (this case MyApp) it will first call build method
   //Every build method must return a widget
-  build(context) {
+  //@orverride key is used to override functions
+  @override
+  Widget build(BuildContext context) {
     //MaterilApp can take arguments; that will "draw" stuff on the screen
     //MaterailApp is a wrapper around entier app
     //home: needs another widget that is drawn on screen
@@ -16,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Easy List'),
+          title: Text('Here is List'),
         ),
       ),
     );
