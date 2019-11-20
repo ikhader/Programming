@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget
     //home: needs another widget that is drawn on screen
     //Scaffold is used to create a nice background on app
     return MaterialApp(
-      home: Scaffold(
+      home: Scaffold( //This is the display screen
         appBar: AppBar(
-          title: Text('Here is List'),
+          title: Text('Here is List'), //Setting title
         ),
       ),
     );

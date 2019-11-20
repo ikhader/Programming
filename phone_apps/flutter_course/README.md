@@ -1,3 +1,17 @@
+
+Flutter with Dart: Android and IOS unified app development environment
+Setup is at: https://flutter.dev/docs/get-started/install/macos
+History to install:
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+flutter doctor
+sudo gem install cocoapods
+flutter doctor
+open -a Simulator —> to open iPhone simulator
+
+To create new app:
+Go to empty directory and run: flutter create first_app
+
+
 # flutter_course
 
 A new Flutter project.
