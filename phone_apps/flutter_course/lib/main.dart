@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         body: Card(
           child: Column(
             children: <Widget>[
-              Image.asset(".idea/assets/kids.jpg"),
+              Image.asset(".idea/assets/kids.jpg"), //This is Image widget and we are also createing a constructor out of it by saying ".asset"
               Text("my kids"),
               Image.asset(".idea/assets/jerry.jpg"),
               Text("Jerry")
