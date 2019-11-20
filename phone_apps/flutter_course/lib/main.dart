@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 //Must NOT return anything
-void main() 
-{
+void main() {
   runApp(MyApp());
-
 }
-//Alt + shift + f --> formatting 
-class MyApp extends StatelessWidget 
-{
+
+//Alt + shift + f --> formatting
+class MyApp extends StatelessWidget {
   //when we pass object on to flatter (this case MyApp) it will first call build method
   //Every build method must return a widget
   //@orverride key is used to override functions
@@ -19,9 +17,20 @@ class MyApp extends StatelessWidget
     //home: needs another widget that is drawn on screen
     //Scaffold is used to create a nice background on app
     return MaterialApp(
-      home: Scaffold( //This is the display screen
+      home: Scaffold(
+        //This is the display screen
         appBar: AppBar(
           title: Text('Here is List'), //Setting title
+        ),
+        body: Card(
+          child: Column(
+            children: <Widget>[
+              Image.asset(".idea/assets/kids.jpg"),
+              Text("my kids"),
+              Image.asset(".idea/assets/jerry.jpg"),
+              Text("Jerry")
+            ],
+          ),
         ),
       ),
     );

@@ -9,8 +9,12 @@ flutter doctor
 open -a Simulator —> to open iPhone simulator
 
 To create new app:
-Go to empty directory and run: flutter create first_app
+Go to empty directory and run: flutter create flutter_course
 
+to run:
+SEA-ML-00027338:flutter_course palagiri$ pwd
+/Users/palagiri/Documents/projects/Programming/phone_apps/flutter_course
+SEA-ML-00027338:flutter_course palagiri$ flutter run  --> this command will launch application on your emulator
 
 # flutter_course
 
