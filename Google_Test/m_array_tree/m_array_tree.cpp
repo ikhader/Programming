@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <map>
 
 using namespace std;
 
@@ -133,7 +134,7 @@ long long m_tree_sum_all_nodes(stnode *h)
         h = v.back();
         v.pop_back();
         total += h->data;
-        cout << "running total: " << total << " current node: " << h->data << endl;
+        //cout << "running total: " << total << " current node: " << h->data << endl;
         //v.insert(v.end(), h->kidoos->begin(), h->kidoos->end());
         for (int i = 0; i < h->kidoos->size(); i++)
           v.push_back(h->kidoos->operator[](i));
@@ -142,15 +143,49 @@ long long m_tree_sum_all_nodes(stnode *h)
     return total;
 }
 
+void copy_parent_child_to_hash_map(stnode *n, map<stnode*, stnode*>&h)
+{
+  for(int i = 0; i < n->children_count; i++)
+    h[n->kidoos->operator[](i)] = n;
+}
+
+void generate_parent_child_map(stnode *h, map<stnode *, stnode *> &m)
+{
+  if (NULL == h) return ;
+
+  queue<stnode *> Q;
+
+  Q.push(h);
+  while(Q.size())
+  {
+    stnode *t = Q.front();
+    Q.pop();
+    copy_parent_child_to_hash_map(t, m);
+    for(int i = 0; i < t->kidoos->size(); i++)
+    {
+      Q.push(t->kidoos->operator[](i));
+    }
+  }
+
+}
+
+void print_parent_child_map(map <stnode *, stnode*> m)
+{
+  for(map<stnode *, stnode *>::iterator it = m.begin(); it != m.end(); it++)
+  {
+    cout << "child: " << it->first->data << " parent: " << it->second->data <<endl;
+  }
+}
+
 /*
          10
 --------------------   
-   /      |       \       \    
+   /      |       \       \
   20     30       40      50
  / \   /          / |  \
 60 70 80        90 100  110
      +++++              +++++++++++++
-    /  |   \           /   |   |     \ 
+    /  |   \           /   |   |     \
   120 130  140        150  160 170  180
  */
 
@@ -236,7 +271,13 @@ int main(int argc, char *argv[])
 //         cout << level_order[i] << " ";
 //   }
 
-  m_tree_sum_all_nodes(h);
+  long long total = m_tree_sum_all_nodes(h);
+  cout<<"Sum of all nodes: " << total <<endl;
+
+  map<stnode*, stnode*>m;
+  generate_parent_child_map(h, m);
+  cout << "Map size is " << m.size() << endl;
+  print_parent_child_map(m);
   m_tree_erase(h);
 
   return 0;
