@@ -1,7 +1,10 @@
 
 
 #include <iostream>
-
+#include <vector>
+#include <algorithm>
+#include<unistd.h>
+#include <map>
 
 #include "array.h"
 
@@ -93,3 +96,99 @@ void get_max_sum_path(int a[], int array_size, int *s, int *e)
   *e = end;
   return ;
 }
+
+
+/*
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+Example:
+
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+This solution has 3 approaches
+1. Brute force [ run loop within a loop and find it out]
+2. using find method
+3. Using hash map/sets
+*/
+void twoSumBruteForce(vector<int>& nums, int target, vector<int> &twoSum) 
+{
+    for(int i = 0; i < nums.size(); i++ )
+    {
+      for(int j = i + 1; j < nums.size(); j++)
+      {
+        if(nums[i] + nums[j] == target)
+        {
+          twoSum.push_back(i);
+          twoSum.push_back(j);
+        }
+
+      }
+    }
+
+}
+
+void twoSumUsingFind(vector <int> &nums, int target, vector<int>&res)
+{
+    for(int i = 0; i < nums.size(); i++)
+    {
+
+      /*
+       auto sec = std::find( nums.begin() + i + 1, nums.end(), target - nums[i]);
+            if(sec != nums.end())
+            {
+                s.push_back(i);
+                s.push_back(sec - nums.begin() + i);
+            }
+      */
+      auto ite = std::find(nums.begin() + i + 1, nums.end(), target - nums[i]);
+      if(ite != nums.end())
+      {
+        res.push_back(i);
+        res.push_back(ite - nums.begin());
+        
+      }
+
+    }
+}
+
+/*
+push all elements into a map
+map[nums[i]] = i
+map[value at nums[i]] = postion
+now run each element on array; use map to look for matching element
+*/  
+void twoSumUsingMap(vector <int> &nums, int target, vector<int>&res)
+{
+    map<int, int> dets;
+
+    //Populate elements and its position into map
+    for(int i = 0; i < nums.size(); i++)
+    {
+      dets[nums[i]] = i;
+    }
+    for(int i = 0; i < nums.size(); i++)
+    {
+      auto ite = dets.find(target - nums[i]);
+      if(ite != dets.end())
+      {
+        res.push_back(i);
+        res.push_back(ite->second);
+
+        dets.erase(nums[i]);
+        dets.erase(ite);
+
+      }
+    }
+
+
+
+
+     
+
+}
+
