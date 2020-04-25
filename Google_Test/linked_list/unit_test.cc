@@ -13,6 +13,7 @@ TEST(create_node, Negative) {
 
 }
 
+
 TEST(list_validation, all_logics_list_validation) {
   int array[] = {10, 20, 30, 40, 50};
   int i, j;
@@ -78,6 +79,54 @@ TEST(list_validation, all_logics_list_validation) {
 
   
   EXPECT_TRUE(delete_list(&h));
+}
+
+
+TEST(list_to_interger_head_last, Negative){
+  int array[] =   {0, 1, 2, 3, 4};
+  int array_2[] = {5, 4, 3, 2, 1, 0};
+  stNode *h1 = NULL, *h2 = NULL;
+  //adding nodes to list 
+  for(int i = 0; i < sizeof(array)/sizeof(array[0]); i++)
+  {
+    EXPECT_TRUE(add_node(&h1, array[i]));
+  }
+  int val;
+  list_to_interger_head_last(h1, val);
+  EXPECT_EQ(val, 43210);
+
+  
+  for(int i = 0; i < sizeof(array_2)/sizeof(array_2[0]); i++)
+  {
+    EXPECT_TRUE(add_node(&h2, array_2[i]));
+  }
+  list_to_interger_head_last(h2, val);
+  EXPECT_EQ(val, 12345);
+
+  val = 0;
+  list_add_data_from_list_head_last(h1, h2, val);
+  EXPECT_EQ(val, 55555);
+
+
+//Head first examples
+  val = 0;
+  list_to_interger_head_first(h1, val);
+  EXPECT_EQ(val, 1234);
+
+  val = 0;
+  list_to_interger_head_first(h2, val);
+  EXPECT_EQ(val, 543210);
+
+  val = 0;
+  list_add_data_from_list_head_first(h1, h2, val);
+  EXPECT_EQ(val, 544444);
+
+
+  EXPECT_TRUE(delete_list(&h1));
+  EXPECT_TRUE(delete_list(&h2));
+
+
+
 }
 
 }

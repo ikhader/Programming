@@ -129,6 +129,77 @@ bool reverse_list(stNode **h)
   
 }
 
+/*
+Convert list into a sequence number.
+Ex: 
+i/p: 0 -> 1 -> 2 -> 3 -> 4 
+o/p: 43210
+Assumptions: data MUST be less be 10
+*/
+
+bool list_to_interger_head_last(stNode *h, int &res)
+{
+  int mul_fact = 1;
+  res = 0;
+  while(h)
+  {
+    if(h->data > 10) return false;
+    res = res + (h->data * mul_fact);
+    //cout<<"@@@@ List: " << h->data << " res: " << res <<endl;
+    mul_fact = mul_fact * 10;
+    h = h->n;
+  }
+  return true;
+
+}
+
+bool list_add_data_from_list_head_last(stNode* l1, stNode *l2, int &res)
+{
+  int num1, num2;
+  num1 = num2 = res = 0;
+  list_to_interger_head_last(l1, num1);
+  list_to_interger_head_last(l2, num2);
+  //cout <<"@@@@@ List1 " << num1 << " List2 : " <<num2 <<endl;
+  res = num1 + num2;
+}
+
+/*
+Convert list into a sequence number.
+Ex: 
+i/p: 1 -> 2 -> 3 -> 4 -> 5
+o/p: 12345
+Assumptions: data MUST be less be 10
+*/
+
+bool list_to_interger_head_first(stNode *h, int &res)
+{
+  int mul_fact = 1;
+  stNode *t = h;
+  res = 0;
+  while(h)
+  {
+    if(h->data > 10) return false;
+    res = (res * mul_fact) + h->data;
+    
+    mul_fact = 10;
+    
+    //cout<<"@@@@ head_first: List: " << h->data << " res: " << res << " mul_fact: " << mul_fact << endl;
+    h = h->n;
+  }
+  return true;
+
+}
+bool list_add_data_from_list_head_first(stNode* l1, stNode *l2, int &res)
+{
+  int num1, num2;
+  num1 = num2 = res = 0;
+  list_to_interger_head_first(l1, num1);
+  list_to_interger_head_first(l2, num2);
+  //cout <<"@@@@@ List1 " << num1 << " List2 : " <<num2 <<endl;
+  res = num1 + num2;
+}
+
+
 int main_(int argc, char *argv[])
 {
   int a[] = {10, 20, 30, 40, 50};
@@ -140,7 +211,7 @@ int main_(int argc, char *argv[])
   {
     add_node(&h, a[i]);
   }
-  printf("List before reverse: \n");
+  printf("@@@@ List before reverse: \n");
   v.clear();
   get_node_details(h, v);
   for(i = 0; i <v.size(); i++)
