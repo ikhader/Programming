@@ -69,6 +69,20 @@ TEST(btree_pre_order, pre_order_testing)
 #endif //__debug__
   }
   v.clear();
+  
+  cout <<"@@@@@@@@@@@@@@@@@@@@@@" <<endl;
+  
+  list<int> l;
+  btree_list_breadth_nodes(t, l, SEPERATOR);
+  for(int idx = 0; idx < v.size(); idx++)
+  {
+    EXPECT_EQ(array_l1_level_order[idx], v[idx]);
+#ifdef __debug__
+    cout<<"array [" << array_l1_level_order[idx] << "] fun_ret[" << v[idx] << "]" <<endl;
+#endif //__debug__
+  }
+  cout <<"@@@@@@@@@@@@@@@@@@@@@@" <<endl;
+  v.clear();
 
 
   int array_l1_left_view[] = {50, 30, 15};

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <list>
 
 #define SEPERATOR '|'
 
@@ -35,6 +36,8 @@ void btree_get_right_view(stnode *h, vector<int> &res);
 void btree_get_left_view(stnode *h, vector<int> &res);
 void btree_get_parent_child_map(stnode *h, stnode *parent, map<stnode *, stnode*> &parent_child_map);
 void btree_get_only_leaf_nodes(stnode *h, vector<stnode*>&v);
+
+void btree_list_breadth_nodes(stnode *h, list<int> &v, char sep = SEPERATOR);
 #endif // __BTREE__
 
 

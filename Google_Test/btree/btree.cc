@@ -3,6 +3,7 @@
 #include <queue>
 #include <stdlib.h>
 
+
 #include "btree.h"
 
 //#define __debug__ 1
@@ -330,5 +331,28 @@ void btree_get_only_leaf_nodes(stnode *h, vector<stnode*>&v)
 
  btree_get_only_leaf_nodes(h->l, v);
  btree_get_only_leaf_nodes(h->r, v);
+
+}
+
+
+/*
+get level order binary tree
+Now populate every item into list
+
+*/
+
+void btree_list_breadth_nodes(stnode *h, list<int> &l, char ch)
+{
+
+  vector <int> v;
+
+  btree_get_level_order(h, v, ch);
+
+  for(int ind = 0; ind < v.size(); ind++)
+  {
+    l.push_back(v[ind]);
+  }
+
+
 
 }
