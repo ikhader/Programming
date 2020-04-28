@@ -62,6 +62,46 @@ void even_odd_sepeartion(int a[], int array_size)
   return;
 }
 
+void even_odd_sepeartion_ver2(int a[], int array_size)
+{
+  int left = 0;
+  int right = array_size - 1;
+  //odd in the starting
+  while(left < right)
+  {
+    if(a[left] % 2 == 1)
+    {
+      left++;
+    }
+    if(a[right] % 2 == 0)
+    {
+      right--;
+    }
+    else
+    {//swap now
+      int t = a[left];
+      a[left] = a[right];
+      a[right] = t;
+      left++;
+      right--;
+
+      // cout << "Left: " << left << " right: " <<right <<endl;
+      // for (int i = 0; i < array_size; i++)
+      // {
+      //   cout <<"a[" << i << "] val: " << a[i] << "   ";
+      // }
+      // cout <<endl;
+
+    }
+    
+  }
+  cout <<"FINAL" <<endl;
+  for (int i = 0; i < array_size; i++)
+  {
+    cout <<"a[" << i << "] val: " << a[i] << "   ";
+  }
+  cout <<endl;
+}
 void get_max_sum_path(int a[], int array_size, int *s, int *e)
 {
   int sum, tsum;
@@ -81,7 +121,7 @@ void get_max_sum_path(int a[], int array_size, int *s, int *e)
         start = i;
         end = j;
         tsum = sum;
-        cout<<"Sum: "<< sum << " start: " << start << " end: " << end << endl;
+        //cout<<"Sum: "<< sum << " start: " << start << " end: " << end << endl;
       }
       if(tsum + a[j] < sum)
       {
@@ -89,7 +129,7 @@ void get_max_sum_path(int a[], int array_size, int *s, int *e)
       }
     }
   }
-  cout <<"----------------------------------------------------------" <<endl;
+  //cout <<"----------------------------------------------------------" <<endl;
   if (sum < a[array_size-1])
     start = end = array_size-1;
   *s = start;

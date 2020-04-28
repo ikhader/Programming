@@ -60,6 +60,23 @@ TEST(even_odd_seperation, Negative) {
   {
     EXPECT_EQ(a_3_result[i], a_3[i]);
   }
+
+  int a_4[] = {1,2,3,7,5};
+  int a_4_v2_result[] = {1,5,3,7,2};
+  even_odd_sepeartion_ver2(a_4, sizeof(a_4)/sizeof(a_4[0]));
+  for(i = 0; i < 5; i++)
+  {
+    EXPECT_EQ(a_4_v2_result[i], a_4[i]);
+  }
+  int a_5[] = {12, 34, 45, 9, 8, 90, 3};
+  int a_5_res[] = {3, 9,45, 34, 8, 90, 12};
+  even_odd_sepeartion_ver2(a_5, sizeof(a_5)/sizeof(a_5[0]));
+  
+  for(i = 0; i < 5; i++)
+  {
+    EXPECT_EQ(a_5_res[i], a_5[i]);
+  }
+
 }
 TEST(get_max_sum_path, Negative) 
 {
@@ -198,7 +215,7 @@ TEST(twoSumBruteForce_1, Positive)
     1,2,3,4,5,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   };
-  std::cout<<"###############vector size: " <<a_1.size() <<"\n";
+  //std::cout<<"###############vector size: " <<a_1.size() <<"\n";
   std::vector<int> a_1_res;
   twoSumBruteForce(a_1, 130, a_1_res);
   EXPECT_EQ(a_1_res.size(), 2);
@@ -418,7 +435,7 @@ TEST(twoSumBruteForce_2, Positive)
     1,2,3,4,5,9,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     1,2,3,4,5,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   };
-  std::cout<<"###############vector size: " <<a_2.size() <<"\n";
+  //std::cout<<"###############vector size: " <<a_2.size() <<"\n";
   std::vector<int> a_2_res;
   twoSumBruteForce(a_2, 96, a_2_res);
   EXPECT_EQ(a_2_res.size(), 2);
