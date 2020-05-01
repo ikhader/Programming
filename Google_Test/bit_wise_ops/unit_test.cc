@@ -61,6 +61,16 @@ TEST(SET_BITS_TILL_INDEX, Postivie) {
   EXPECT_TRUE(c == 79);
 }
 
+TEST(FLIP_BIT_ZERO_BASED, Postivie) {
+  int c = 1;
+  FLIP_BIT_ZERO_BASED(c, 0);
+  EXPECT_TRUE(c == 0);
+
+  FLIP_BIT_ZERO_BASED(c, 0);
+  EXPECT_TRUE(c == 1);
+
+}
+
 TEST(bitwise_get_set_bit_cnt, Postivie) {
   int i = 128;
   int cnt = 0;
