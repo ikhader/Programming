@@ -95,8 +95,19 @@ TEST(bitwise_get_set_bit_cnt, Postivie) {
   EXPECT_TRUE(i == 126);
   bitwise_get_set_bit_cnt(i, cnt);
   EXPECT_TRUE(cnt == 6);
+}
 
+/*
+1101 0000
+*/
+TEST(bitwise_copy_from_start_to_end, Positive){
+  unsigned char dst = 128;
+  unsigned char src = 85;
 
+  bitwise_copy_from_start_to_end(dst, src, 4, 7);
+  //cout <<"@@@ dst is: " << dst <<endl;
+  //printf("\n\n dst: %d \n\n", dst);
+  EXPECT_TRUE(dst == 208);
 }
 }
 
