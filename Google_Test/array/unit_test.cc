@@ -464,5 +464,25 @@ TEST(twoSumUsingMap, Positive)
   EXPECT_EQ(twoSum[0], 3);
   EXPECT_EQ(twoSum[1], 4);
 }
+
+TEST(max_subarray_sum, Positive)
+{
+  std::vector<int> ele {0,10,20,30,40, 0, 20};
+  int total = 0;
+  max_subarray_sum(ele, total);
+  EXPECT_EQ(total, 120);
+
+  std::vector<int> ele_1 {0,-1,-2,-3,-4, -5};
+  max_subarray_sum(ele_1, total);
+  EXPECT_EQ(total, 0);
+
+  std::vector<int> ele_2 {-1,-2, 0, -3,-4, -5};
+  max_subarray_sum(ele_2, total);
+  EXPECT_EQ(total, 0);
+
+  std::vector<int> ele_3 {-1,-2, -3,-4, -5};
+  max_subarray_sum(ele_3, total);
+  EXPECT_EQ(total, 0);
+}
 }
 

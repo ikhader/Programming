@@ -59,6 +59,7 @@ void m_tree_erase(stnode *h)
     }
 }
 
+
 void m_tree_delete_node(stnode *n)
 {
     if (NULL == n) return;
@@ -67,7 +68,7 @@ void m_tree_delete_node(stnode *n)
     {
         free(n->kidoos->operator[](i));
     }
-    free (n);
+    free(n);
 }
 
 void m_tree_print_children(stnode *head)
@@ -177,6 +178,21 @@ void print_parent_child_map(map <stnode *, stnode*> m)
   }
 }
 
+void m_tree_delete_tree(stnode *h)
+{
+  queue<stnode*> Q;
+  Q.push(h);
+  while(Q.size())
+  {
+    stnode *t = Q.front();
+    Q.pop();
+    for( int i = 0; i < t->kidoos->size(); i++)
+      Q.push(t->kidoos->operator[](i));
+    //cout <<"Deleting node: " << t->data <<endl;
+    delete t;
+  }
+}
+
 /*
          10
 --------------------   
@@ -278,7 +294,8 @@ int main(int argc, char *argv[])
   generate_parent_child_map(h, m);
   cout << "Map size is " << m.size() << endl;
   print_parent_child_map(m);
-  m_tree_erase(h);
+  //m_tree_erase(h);
+  m_tree_delete_tree(h);
 
   return 0;
 }

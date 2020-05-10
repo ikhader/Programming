@@ -12,4 +12,5 @@ void get_max_sum_path(int a[], int array_size, int *s, int *e);
 void twoSumBruteForce(std::vector<int> &nums, int target, std::vector<int> &twoSum);
 void twoSumUsingFind(std::vector<int> &nums, int target, std::vector<int> &twoSum);
 void twoSumUsingMap(vector <int> &nums, int target, vector<int>&res);
+void max_subarray_sum(vector <int> nums, int &total);
 #endif// __ARRAY_MATRIX__

@@ -224,11 +224,34 @@ void twoSumUsingMap(vector <int> &nums, int target, vector<int>&res)
 
       }
     }
-
-
-
-
-     
-
 }
+
+void max_subarray_sum(vector <int> nums, int &total)
+{
+  int max_so_far = 0;
+  int max_ending_here = 0;
+
+  for (int i = 0; i < nums.size(); i++)
+  {
+    max_ending_here = max_ending_here + nums.operator[](i);
+
+    if(max_ending_here < 0)
+      max_ending_here = 0;
+    else if(max_ending_here > max_so_far)
+      max_so_far = max_ending_here;
+
+  }
+  total = max_so_far;
+}
+
+
+
+
+
+
+
+
+
+
+
 
