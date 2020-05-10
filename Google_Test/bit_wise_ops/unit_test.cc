@@ -109,5 +109,13 @@ TEST(bitwise_copy_from_start_to_end, Positive){
   //printf("\n\n dst: %d \n\n", dst);
   EXPECT_TRUE(dst == 208);
 }
+
+TEST(flip_nibble, Positive){
+  unsigned char s1 = 15;
+  flip_nibble(s1);
+  printf("NEXT ROUNT\n");
+  flip_nibble(s1);
+}
+
 }
 

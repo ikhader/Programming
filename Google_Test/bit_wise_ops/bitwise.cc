@@ -61,4 +61,33 @@ void bitwise_copy_from_start_to_end(unsigned char &dst, unsigned char src, int s
 
 }
 
+/*
+char: 
+i/p: a | b | c | d | e | f | g | h |
+o/p: h | g | f | e | d | c | b | a |
 
+check if both bits are NOT set; then flip them 
+*/
+
+void flip_nibble(unsigned char &c)
+{
+  const int max_loop = sizeof(unsigned char) * 8;
+
+  printf("original: ");
+  bitwise_print_bits(c);
+
+  for (int i = 0; i < max_loop/2 ; i++)
+  {
+    if (IS_BIT_SET_ZERO_BASED(c, i) != IS_BIT_SET_ZERO_BASED(c, max_loop - 1 - i))
+    {
+      FLIP_BIT_ZERO_BASED(c, i);
+      FLIP_BIT_ZERO_BASED(c, max_loop - 1 - i);
+      //printf("iteration [%d]: \n", i);
+      //bitwise_print_bits(c);
+
+    }
+  }
+  printf("FLIPPED:  ");
+  bitwise_print_bits(c);
+
+}
